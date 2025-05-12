@@ -49,6 +49,7 @@ script = ExtResource("1_hh5uf")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_v7gqg")
+autoplay = "default"
 
 [node name="KillZone" parent="AnimatedSprite2D" instance=ExtResource("2_hh5uf")]
 

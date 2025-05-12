@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	if ray_cast_left.is_colliding():
 		dir = -1
 		animated_sprite.flip_h = true
-	if ray_cast_right.is_colliding()
+	if ray_cast_right.is_colliding():
 		dir = 1
 		animated_sprite.flip_h = false
 	position.x += dir * SPEED * delta
