@@ -58,7 +58,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_erv1k")
 theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
-text = "Start"
+text = "START_BUTTON"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -69,7 +69,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_erv1k")
 theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
-text = "Options"
+text = "SETTING_BUTTON"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -80,8 +80,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_erv1k")
 theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
-text = "Exit
-"
+text = "EXIT_BUTTON"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="setting_pressed"]

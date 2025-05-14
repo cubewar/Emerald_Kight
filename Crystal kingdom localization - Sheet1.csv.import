@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://24wlrtij55u0"
+
+[deps]
+
+files=["res://Crystal kingdom localization - Sheet1.en.translation", "res://Crystal kingdom localization - Sheet1.kr.translation"]
+
+source_file="res://Crystal kingdom localization - Sheet1.csv"
+dest_files=["res://Crystal kingdom localization - Sheet1.en.translation", "res://Crystal kingdom localization - Sheet1.kr.translation"]
+
+[params]
+
+compress=true
+delimiter=0

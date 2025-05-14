@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://ws75hhiywlyi"]
 
-[ext_resource type="Script" uid="uid://dkv0u23lroq50" path="res://Scenes/dialog.gd" id="1_0tpv1"]
+[ext_resource type="Script" uid="uid://dkv0u23lroq50" path="res://Scripts/dialog.gd" id="1_0tpv1"]
 [ext_resource type="FontFile" uid="uid://2bnn13rbdl4v" path="res://Assets/fonts/PixelOperator8.ttf" id="2_nm2tb"]
+
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jf8ex"]
 bg_color = Color(0.6, 0.6, 0.6, 0)

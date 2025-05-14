@@ -40,6 +40,10 @@ moveRight={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Crystal kingdom localization - Sheet1.en.translation", "res://Crystal kingdom localization - Sheet1.kr.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
