@@ -34,7 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lt4b5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MainButtons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,7 +49,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="MainButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -60,7 +60,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
 text = "START_BUTTON"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="SettingButton" type="Button" parent="MainButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -71,7 +71,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
 text = "SETTING_BUTTON"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="MainButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -82,6 +82,36 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
 text = "EXIT_BUTTON"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="setting_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button3" to="." method="exit_pressed"]
+[node name="SettingUI" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -269.0
+offset_right = 375.0
+offset_bottom = 269.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="SettingUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 35.0
+offset_right = 192.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 33
+text = "SETTING_LABLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MainButtons/StartButton" to="." method="on_start_pressed"]
+[connection signal="pressed" from="MainButtons/SettingButton" to="." method="setting_pressed"]
+[connection signal="pressed" from="MainButtons/ExitButton" to="." method="exit_pressed"]
