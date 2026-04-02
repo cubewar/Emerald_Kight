@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm2qvgt7pd1r6"
-path="res://.godot/imported/fruit.png-ffffa8b0de582e4e19865d6cd600e2dd.ctex"
+uid="uid://bnwby2cwai1gk"
+path="res://.godot/imported/EmeraldKight.png-358faef614d5ee570d5c3d39911392fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/fruit.png"
-dest_files=["res://.godot/imported/fruit.png-ffffa8b0de582e4e19865d6cd600e2dd.ctex"]
+source_file="res://Assets/sprites/EmeraldKight.png"
+dest_files=["res://.godot/imported/EmeraldKight.png-358faef614d5ee570d5c3d39911392fc.ctex"]
 
 [params]
 

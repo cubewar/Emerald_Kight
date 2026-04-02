@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqq40vy1cgt1f"]
+[gd_scene format=3 uid="uid://bqq40vy1cgt1f"]
 
 [ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://dgi8c4j45pxgs" path="res://Scripts/game_manager.gd" id="1_h4fw4"]
-[ext_resource type="Script" uid="uid://cc5imsj8e8k0e" path="res://Scripts/player.gd" id="2_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://boq2bnevbc7b" path="res://Assets/sprites/world_tileset.png" id="3_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://sdjke0sxcaxq" path="res://Scenes/GameScenes/platform.tscn" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://wjhvkcu02g84" path="res://Scenes/GameScenes/kill_zone.tscn" id="4_i6g32"]
@@ -216,13 +215,13 @@ _data = {
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1l0tm"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=873220318]
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." unique_id=1788538633]
 unique_name_in_owner = true
 script = ExtResource("1_h4fw4")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." unique_id=284589534]
 tile_set = SubResource("TileSet_wowpa")
 format = 2
 layer_0/name = "Background"
@@ -230,56 +229,47 @@ layer_0/tile_data = PackedInt32Array(-589851, 0, 11, -524315, 0, 11, -458779, 0,
 layer_1/name = "Mid"
 layer_1/tile_data = PackedInt32Array(196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 327679, 0, 0, 262144, 0, 0, 327684, 393216, 0, 327685, 393216, 0, 327686, 393216, 0, 327689, 393216, 0, 327690, 393216, 0, 327693, 393216, 0, 327694, 393216, 0, 327695, 393216, 0, 327687, 589824, 0, 327688, 720896, 0, 327692, 720896, 0, 327691, 589824, 0, 196614, 0, 3, 262150, 0, 5, 393220, 393216, 1, 393221, 393216, 1, 393222, 393216, 1, 262147, 0, 1, 327683, 0, 1, 327682, 0, 1, 262146, 0, 1, 262145, 0, 1, 327681, 0, 1, 327680, 0, 1, 393215, 0, 1, 393219, 0, 1, 393218, 0, 1, 393217, 0, 1, 393216, 0, 1, 458751, 0, 1, 393225, 393216, 1, 393226, 393216, 1, 393229, 393216, 1, 393230, 393216, 1, 393231, 393216, 1, 327702, 65536, 0, 327703, 0, 1, 393238, 65536, 0, 393239, 65536, 0, 458775, 65536, 0, 458774, 65536, 0, 327704, 0, 1, 393240, 0, 1, 458776, 65536, 0, 327705, 0, 1, 393241, 0, 1, 458777, 65536, 0, 458778, 0, 1, 393242, 0, 1, 327706, 0, 1, 327707, 0, 1, 393243, 0, 1, 458779, 0, 1, 327708, 0, 0, 393244, 0, 1, 458780, 0, 1, 327709, 0, 1, 262173, 0, 0, 393245, 0, 1, 458781, 0, 1, 262167, 0, 0)
 
-[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+[node name="Player" parent="." unique_id=150653547 instance=ExtResource("1_ebmjs")]
 z_index = 5
 position = Vector2(37, 27)
-script = ExtResource("2_qxrlw")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(4, 4)
-limit_bottom = 130
-limit_smoothed = true
-position_smoothing_enabled = true
-
-[node name="Platform" parent="." instance=ExtResource("4_3dryh")]
+[node name="Platform" parent="." unique_id=1576928716 instance=ExtResource("4_3dryh")]
 position = Vector2(37, 14)
 
-[node name="Platform2" parent="." instance=ExtResource("4_3dryh")]
+[node name="Platform2" parent="." unique_id=1337539871 instance=ExtResource("4_3dryh")]
 position = Vector2(273, 85)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform2"]
-libraries = {
-&"": SubResource("AnimationLibrary_i6g32")
-}
-autoplay = "platformMove"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform2" unique_id=647323385]
+libraries/ = SubResource("AnimationLibrary_i6g32")
+autoplay = &"platformMove"
 
-[node name="KillZone" parent="." instance=ExtResource("4_i6g32")]
+[node name="KillZone" parent="." unique_id=1034812881 instance=ExtResource("4_i6g32")]
 position = Vector2(106, 156)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=2147429563]
 position = Vector2(0, 1)
 shape = SubResource("WorldBoundaryShape2D_1l0tm")
 
-[node name="Coins" type="Node" parent="."]
+[node name="Coins" type="Node" parent="." unique_id=222740710]
 
-[node name="Coin2" parent="Coins" instance=ExtResource("5_wowpa")]
+[node name="Coin2" parent="Coins" unique_id=350807736 instance=ExtResource("5_wowpa")]
 position = Vector2(157, 74)
 
-[node name="Coin3" parent="Coins" instance=ExtResource("5_wowpa")]
+[node name="Coin3" parent="Coins" unique_id=1120437512 instance=ExtResource("5_wowpa")]
 position = Vector2(304, 74)
 
-[node name="Coin4" parent="Coins" instance=ExtResource("5_wowpa")]
+[node name="Coin4" parent="Coins" unique_id=837165900 instance=ExtResource("5_wowpa")]
 position = Vector2(456, 73)
 
-[node name="Coin" parent="Coins" instance=ExtResource("5_wowpa")]
+[node name="Coin" parent="Coins" unique_id=2057809056 instance=ExtResource("5_wowpa")]
 position = Vector2(91, 70)
 
-[node name="Enemy" parent="." instance=ExtResource("7_v158k")]
+[node name="Enemy" parent="." unique_id=1932934368 instance=ExtResource("7_v158k")]
 position = Vector2(423, 81)
 
-[node name="Lables" type="Node" parent="."]
+[node name="Lables" type="Node" parent="." unique_id=164760134]
 
-[node name="ControlText" type="Label" parent="Lables"]
+[node name="ControlText" type="Label" parent="Lables" unique_id=1567403833]
 offset_left = 24.0
 offset_top = 18.0
 offset_right = 322.0
@@ -292,7 +282,7 @@ Left arrow key or A key to move left
 Right arrow key or D key to move right"
 horizontal_alignment = 1
 
-[node name="Coins" type="Label" parent="Lables"]
+[node name="Coins" type="Label" parent="Lables" unique_id=2027923341]
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("5_ldgsr")

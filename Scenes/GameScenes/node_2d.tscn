@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://jkxpjd8iddfr"]
+[gd_scene format=3 uid="uid://jkxpjd8iddfr"]
 
 [ext_resource type="Script" uid="uid://6xcx7gdofckk" path="res://Scripts/enemy.gd" id="1_hh5uf"]
 [ext_resource type="Texture2D" uid="uid://2ttea18kpkep" path="res://Assets/sprites/slime_green.png" id="1_v1qfn"]
 [ext_resource type="PackedScene" uid="uid://wjhvkcu02g84" path="res://Scenes/GameScenes/kill_zone.tscn" id="2_hh5uf"]
-
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6whob"]
 atlas = ExtResource("1_v1qfn")
@@ -44,24 +43,24 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chwn1"]
 size = Vector2(12, 11)
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="Node2D" unique_id=1906591469]
 script = ExtResource("1_hh5uf")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=476002406]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_v7gqg")
 autoplay = "default"
 
-[node name="KillZone" parent="AnimatedSprite2D" instance=ExtResource("2_hh5uf")]
+[node name="EnemyHurtbox" parent="AnimatedSprite2D" unique_id=1762332264 instance=ExtResource("2_hh5uf")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/KillZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/EnemyHurtbox" unique_id=831488930]
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_chwn1")
 
-[node name="RayCastLeft" type="RayCast2D" parent="."]
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1679033683]
 position = Vector2(0, -7)
 target_position = Vector2(8, 1)
 
-[node name="RayCastRight" type="RayCast2D" parent="."]
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1531523461]
 position = Vector2(0, -7)
 target_position = Vector2(-8, 0)
