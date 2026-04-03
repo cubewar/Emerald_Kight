@@ -3,6 +3,17 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
+# --- NEW: MOMENTUM VARIABLES ---
+const ACCELERATION = 800.0 # How fast the knight reaches max speed
+const FRICTION = 1000.0    # How fast the knight slides to a stop
+
+# --- GAME FEEL TIMERS ---
+var coyote_timer: float = 0.0
+const COYOTE_TIME: float = 0.15 
+
+var jump_buffer_timer: float = 0.0
+const JUMP_BUFFER_TIME: float = 0.1 
+
 enum State {
 	IDLE,
 	RUN,
@@ -11,130 +22,166 @@ enum State {
 	ATTACK
 }
 
-# Track the current state (Start in IDLE)
 @export var current_state : State = State.IDLE
 
 func _physics_process(delta: float) -> void:
-	# 1. Add gravity globally (happens in every state unless on the floor)
+	# 1. Update Game Feel Timers
+	if is_on_floor():
+		coyote_timer = COYOTE_TIME
+	else:
+		coyote_timer -= delta
+		
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer = JUMP_BUFFER_TIME
+	else:
+		jump_buffer_timer -= delta
+
+	# 2. Add gravity globally
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# 2. Run the logic specific to our current state
+	# 3. Run the logic specific to our current state
+	# We pass 'delta' into our states now so Acceleration/Friction works smoothly
 	match current_state:
 		State.IDLE:
-			state_idle()
+			state_idle(delta)
 		State.RUN:
-			state_run()
+			state_run(delta)
 		State.JUMP:
-			state_jump()
+			state_jump(delta)
 		State.FALL:
-			state_fall()
+			state_fall(delta)
 		State.ATTACK:
-			state_attack()
+			state_attack(delta)
 			
-	# 3. Always apply movement at the very end of the frame!
+	# 4. Always apply movement at the very end of the frame!
 	move_and_slide()
 
 
 # --- STATE LOGIC FUNCTIONS ---
 
-func state_idle():
-	$AnimationPlayer.play("Idle") # Make sure capitalization matches your animation exactly!
-	velocity.x = move_toward(velocity.x, 0, SPEED) # Stop sliding
+func state_idle(delta):
+	$AnimationPlayer.play("Idle") 
+	# NEW: Smoothly slide to a stop using FRICTION
+	velocity.x = move_toward(velocity.x, 0, FRICTION * delta) 
 	
-	# Transitions out of IDLE
+	# Transitions
 	if Input.is_action_just_pressed("attack"):
 		current_state = State.ATTACK
-	elif Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		current_state = State.JUMP
+	elif jump_buffer_timer > 0.0 and coyote_timer > 0.0: 
+		perform_jump()
 	elif Input.get_axis("moveLeft", "moveRight"):
 		current_state = State.RUN
 	elif not is_on_floor():
 		current_state = State.FALL
 
-func state_run():
-	$AnimationPlayer.play("run") 
+func state_run(delta):
+	$AnimationPlayer.play("Run") 
 	var direction = Input.get_axis("moveLeft", "moveRight")
 	
-	# Handle movement and flipping the sprite
+	# NEW: Smoothly speed up using ACCELERATION
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
 		$AnimatedSprite2D.flip_h = direction < 0
 	else:
-		# No direction pressed? Go back to IDLE
+		# If we let go of the keys, go back to IDLE (where friction will slow us down)
 		current_state = State.IDLE 
 		
-	# Transitions out of RUN
+	# Transitions
 	if Input.is_action_just_pressed("attack"):
 		current_state = State.ATTACK
-	elif Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		current_state = State.JUMP
+	elif jump_buffer_timer > 0.0 and coyote_timer > 0.0:
+		perform_jump()
 	elif not is_on_floor():
 		current_state = State.FALL
 
-func state_jump():
-	# $AnimationPlayer.play("Jump") # Uncomment if you have a jump animation
+func state_jump(delta):
+	$AnimationPlayer.play("Jump") 
 	
-	# Allow horizontal movement while in the air
+	# NEW: Variable Jump Height (Short Hop)
+	# If we let go of jump while moving UP, cut upward speed in half!
+	if Input.is_action_just_released("jump") and velocity.y < 0:
+		velocity.y *= 0.5
+	
 	var direction = Input.get_axis("moveLeft", "moveRight")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
 		$AnimatedSprite2D.flip_h = direction < 0
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 
-	# Transitions out of JUMP
+	# Transitions
 	if Input.is_action_just_pressed("attack"):
 		current_state = State.ATTACK
-	elif velocity.y > 0: # If we start moving downwards, we are falling!
+	elif velocity.y > 0: 
 		current_state = State.FALL
 
-func state_fall():
-	# $AnimationPlayer.play("Fall") # Uncomment if you have a fall animation
+func state_fall(delta):
+	# $AnimationPlayer.play("Fall") 
 	
-	# Allow horizontal movement while in the air
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("moveLeft", "moveRight")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
 		$AnimatedSprite2D.flip_h = direction < 0
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 
-	# Transitions out of FALL
+	# Transitions
 	if Input.is_action_just_pressed("attack"):
 		current_state = State.ATTACK
+	elif jump_buffer_timer > 0.0 and coyote_timer > 0.0: 
+		perform_jump()
 	elif is_on_floor():
-		# Did we land while holding a direction? Go to RUN. Otherwise, IDLE.
-		if Input.get_axis("ui_left", "ui_right"):
+		if Input.get_axis("moveLeft", "moveRight"):
 			current_state = State.RUN
 		else:
 			current_state = State.IDLE
 
-func state_attack():
+func state_attack(delta):
 	$AnimationPlayer.play("Attack")
-	velocity.x = 0 # Lock the player in place for the heavy strike
 	
-	# Notice there is NO input checking here. 
-	# We rely entirely on the animation signal to return to IDLE.
+	var direction = Input.get_axis("moveLeft", "moveRight")
+	
+	# NEW: Attack Movement Logic
+	if is_on_floor():
+		# Ground attack: Can move, but slower (half speed), and NO flipping sprite!
+		var attack_speed = SPEED * 0.5 
+		if direction:
+			velocity.x = move_toward(velocity.x, direction * attack_speed, ACCELERATION * delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+	else:
+		# Air attack: Normal air momentum, NO flipping sprite!
+		if direction:
+			velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 
+# --- HELPER FUNCTIONS ---
+
+func perform_jump():
+	velocity.y = JUMP_VELOCITY
+	jump_buffer_timer = 0.0 
+	coyote_timer = 0.0 
+	current_state = State.JUMP
 
 # --- SIGNALS AND JUICE ---
 
-# IMPORTANT: Make sure this is connected from your AnimationPlayer's Node tab!
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Attack":
-		current_state = State.IDLE # Return to normal when swing is done
+		if is_on_floor():
+			current_state = State.IDLE 
+		else:
+			current_state = State.FALL
 
 func hit_stop():
 	Engine.time_scale = 0.1
 	await get_tree().create_timer(0.05, true, false, true).timeout
 	Engine.time_scale = 1.0
 
-# IMPORTANT: Make sure this is connected from your HammerHitbox Area2D Node tab!
 func _on_hammmer_hit_box_area_entered(area: Area2D) -> void:
 	if area.name == "EnemyHurtbox":
 		hit_stop()
 		$Camera2D.apply_shake(15.0) 
-		# area.get_parent().take_damage(1)
+		var direction_to_enemy = sign(area.global_position.x - global_position.x)
+		area.get_parent().take_damage(1, direction_to_enemy)

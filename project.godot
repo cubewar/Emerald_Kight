@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Platform"
+config/name="Emerald Knight"
 run/main_scene="uid://bqq40vy1cgt1f"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"

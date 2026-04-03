@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctqbo1rrfbo1q"]
 
-[ext_resource type="Texture2D" uid="uid://bnwby2cwai1gk" path="res://Assets/sprites/EmeraldKight.png" id="1_efbct"]
+[ext_resource type="Texture2D" uid="uid://lfeyk6a7j025" path="res://Assets/sprites/EmeraldKight.png" id="1_efbct"]
 [ext_resource type="Script" uid="uid://cc5imsj8e8k0e" path="res://Scripts/player.gd" id="1_nmouh"]
 [ext_resource type="Script" uid="uid://vsm6wq2f3628" path="res://Scenes/GameScenes/camera.gd" id="2_0pqpv"]
 
@@ -16,6 +16,10 @@ region = Rect2(64, 0, 64, 64)
 atlas = ExtResource("1_efbct")
 region = Rect2(128, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_spf5s"]
+atlas = ExtResource("1_efbct")
+region = Rect2(0, 128, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bda6a"]
 atlas = ExtResource("1_efbct")
 region = Rect2(0, 64, 64, 64)
@@ -27,6 +31,18 @@ region = Rect2(64, 64, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wjfv"]
 atlas = ExtResource("1_efbct")
 region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6efi"]
+atlas = ExtResource("1_efbct")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy426"]
+atlas = ExtResource("1_efbct")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix425"]
+atlas = ExtResource("1_efbct")
+region = Rect2(0, 128, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3wgy"]
 animations = [{
@@ -46,6 +62,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_spf5s")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bda6a")
 }, {
 "duration": 1.0,
@@ -57,10 +81,24 @@ animations = [{
 "loop": false,
 "name": &"Light_Attack",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6efi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy426")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix425")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3smsa"]
-radius = 5.0
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tv8qt"]
 radius = 7.28011
@@ -87,10 +125,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.4),
+"times": PackedFloat32Array(0, 0.16666667, 0.26666668, 0.36666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 0]
+"values": [2, 0, 1, 2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -99,10 +137,10 @@ tracks/2/path = NodePath("HammmerHitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.13484846, 0.34325063, 0.41312665),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.41312665),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false, true, true, false]
+"values": [true, false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_0pqpv"]
@@ -131,6 +169,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"Idle"]
+}
+
+[sub_resource type="Animation" id="Animation_fdc84"]
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Jump"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_nmouh"]
@@ -172,11 +237,41 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_spf5s"]
+resource_name = "Run"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Run"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bda6a"]
 _data = {
 &"Attack": SubResource("Animation_efbct"),
 &"Idle": SubResource("Animation_0pqpv"),
-&"RESET": SubResource("Animation_nmouh")
+&"Jump": SubResource("Animation_fdc84"),
+&"RESET": SubResource("Animation_nmouh"),
+&"Run": SubResource("Animation_spf5s")
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=1496604547]
@@ -188,13 +283,13 @@ sprite_frames = SubResource("SpriteFrames_x3wgy")
 animation = &"Light_Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=171403223]
-position = Vector2(-5, 3)
+position = Vector2(-5, 2)
 shape = SubResource("CircleShape2D_3smsa")
 
 [node name="HammmerHitBox" type="Area2D" parent="." unique_id=1332530915]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HammmerHitBox" unique_id=1759660486]
-position = Vector2(10, -2)
+position = Vector2(10, -3)
 shape = SubResource("CircleShape2D_tv8qt")
 disabled = true
 

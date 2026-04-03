@@ -1,11 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxc7arxnuflp8"]
+[gd_scene format=3 uid="uid://dxc7arxnuflp8"]
 
 [ext_resource type="Script" uid="uid://dyg8y7iw7w5ux" path="res://Scripts/main_menu.gd" id="1_lt4b5"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erv1k"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
-bg_color = Color(0.641934, 0.641934, 0.641934, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erv1k"]
+bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -18,14 +16,16 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erv1k"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
+bg_color = Color(0.641934, 0.641934, 0.641934, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erv1k"]
+
+[node name="MainMenu" type="Control" unique_id=1816851325]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lt4b5")
 
-[node name="MainButtons" type="VBoxContainer" parent="."]
+[node name="MainButtons" type="VBoxContainer" parent="." unique_id=1075595260]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,40 +49,40 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="StartButton" type="Button" parent="MainButtons"]
+[node name="StartButton" type="Button" parent="MainButtons" unique_id=42650878]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_erv1k")
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_erv1k")
 text = "START_BUTTON"
 
-[node name="SettingButton" type="Button" parent="MainButtons"]
+[node name="SettingButton" type="Button" parent="MainButtons" unique_id=603184781]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_erv1k")
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_erv1k")
 text = "SETTING_BUTTON"
 
-[node name="ExitButton" type="Button" parent="MainButtons"]
+[node name="ExitButton" type="Button" parent="MainButtons" unique_id=750910794]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_erv1k")
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_erv1k")
 text = "EXIT_BUTTON"
 
-[node name="SettingUI" type="Panel" parent="."]
+[node name="SettingUI" type="Panel" parent="." unique_id=320043859]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -97,7 +97,7 @@ offset_bottom = 269.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="SettingUI"]
+[node name="Label" type="Label" parent="SettingUI" unique_id=200307119]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

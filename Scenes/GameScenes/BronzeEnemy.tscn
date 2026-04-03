@@ -43,19 +43,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chwn1"]
 size = Vector2(12, 11)
 
-[node name="Enemy" type="Node2D" unique_id=1906591469]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eglu"]
+size = Vector2(12, 1.5)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=597431816]
 script = ExtResource("1_hh5uf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=476002406]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_v7gqg")
 autoplay = "default"
-
-[node name="EnemyHurtbox" parent="AnimatedSprite2D" unique_id=1762332264 instance=ExtResource("2_hh5uf")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/EnemyHurtbox" unique_id=831488930]
-position = Vector2(0, 5.5)
-shape = SubResource("RectangleShape2D_chwn1")
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1679033683]
 position = Vector2(0, -7)
@@ -64,3 +61,16 @@ target_position = Vector2(8, 1)
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=1531523461]
 position = Vector2(0, -7)
 target_position = Vector2(-8, 0)
+
+[node name="EnemyHurtbox" parent="." unique_id=1762332264 instance=ExtResource("2_hh5uf")]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=831488930]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_chwn1")
+
+[node name="FeetCollision" type="CollisionShape2D" parent="." unique_id=1099676992]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_8eglu")
+
+[node name="Timer" type="Timer" parent="." unique_id=225396472]
