@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bcejnbt84wrxv"]
+
+[ext_resource type="Script" uid="uid://cci7mkbcmg5r8" path="res://Scripts/level_exit.gd" id="1_fqn7l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7ntr"]
+
+[node name="LevelExitArea" type="Node2D" unique_id=813649101]
+
+[node name="ExitArea" type="Area2D" parent="." unique_id=1597017978]
+script = ExtResource("1_fqn7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea" unique_id=1990810682]
+shape = SubResource("CircleShape2D_s7ntr")
