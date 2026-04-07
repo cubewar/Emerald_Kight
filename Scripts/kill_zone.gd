@@ -4,13 +4,10 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		# Optional: Play a death sound or animation on the player
-		Engine.time_scale = 0.5
-		
-		body.visible = false 
-		body.set_physics_process(false) 
-		
-		timer.start()
+		# Instead of instantly killing, we check if the player can take damage
+		if body.has_method("take_damage"):
+			body.take_damage(1)
+
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1

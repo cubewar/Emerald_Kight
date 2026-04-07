@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://53w83edodxrf"]
+
+[ext_resource type="Script" uid="uid://c370wmwac7m5c" path="res://Scenes/GameScenes/life_container.gd" id="1_11lpx"]
+[ext_resource type="Texture2D" uid="uid://cb58r0m2o7pim" path="res://Assets/sprites/LifeEmerald-Sheet-Sheet.png" id="2_c6a20"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6a20"]
+atlas = ExtResource("2_c6a20")
+region = Rect2(7.911911, 7.1786346, 16.624619, 16.963905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taogt"]
+atlas = ExtResource("2_c6a20")
+region = Rect2(39.65699, 6.8393555, 16.432411, 16.963905)
+
+[node name="HUD" type="CanvasLayer" unique_id=330115987]
+
+[node name="LifeContainer" type="HBoxContainer" parent="." unique_id=360452237]
+custom_minimum_size = Vector2(5, 5)
+offset_left = -3.0
+offset_right = 37.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 4
+script = ExtResource("1_11lpx")
+life_full = SubResource("AtlasTexture_c6a20")
+life_empty = SubResource("AtlasTexture_taogt")
