@@ -4,7 +4,8 @@ extends Node
 
 # When the game first boots up, load Level 1
 func _ready() -> void:
-	load_level("res://Scenes/GameScenes/game.tscn") # Make sure this path matches your actual level 1!
+	#load_level("res://Scenes/GameScenes/game.tscn") # Make sure this path matches your actual level 1!
+	load_level("res://Scenes/LevelScene/Overworld.tscn")
 
 func load_level(level_path: String) -> void:
 	# 1. Destroy the old level

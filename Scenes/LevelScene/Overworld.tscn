@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://btbpnu4vcr4yp"]
+
+[ext_resource type="PackedScene" uid="uid://driwtthj37jlu" path="res://Scenes/LevelScene/MapPlayer.tscn" id="1_h0jjt"]
+[ext_resource type="PackedScene" uid="uid://bl7mscu45f7yd" path="res://Scenes/LevelScene/MapNode.tscn" id="2_66hsp"]
+
+[node name="LevelScene" type="Node2D" unique_id=1297835083]
+
+[node name="Line2D" type="Line2D" parent="." unique_id=154938892]
+points = PackedVector2Array(0, 0, 39.155, 0)
+width = 4.0
+
+[node name="MapNode0" parent="." unique_id=786387588 node_paths=PackedStringArray("right_node") instance=ExtResource("2_66hsp")]
+level_number = 0
+right_node = NodePath("../MapNode1")
+
+[node name="MapNode1" parent="." unique_id=1589800836 node_paths=PackedStringArray("left_node") instance=ExtResource("2_66hsp")]
+position = Vector2(40, 0)
+left_node = NodePath("../MapNode0")
+
+[node name="MapPlayer" parent="." unique_id=1498027048 node_paths=PackedStringArray("starting_node") instance=ExtResource("1_h0jjt")]
+starting_node = NodePath("../MapNode0")

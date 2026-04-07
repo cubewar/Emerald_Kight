@@ -4,3 +4,5 @@ extends Node
 var max_health: int = 3
 var current_health: int = 3
 # var gems: int = 0  <-- We can use this later!
+
+var highest_unlocked_level: int = 1

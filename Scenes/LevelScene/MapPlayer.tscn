@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://driwtthj37jlu"]
+
+[ext_resource type="Script" uid="uid://bnb1ypyl7hlnj" path="res://Scripts/map_player.gd" id="1_pwwow"]
+[ext_resource type="Texture2D" uid="uid://lfeyk6a7j025" path="res://Assets/sprites/EmeraldKight.png" id="2_scurt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1b8l"]
+atlas = ExtResource("2_scurt")
+region = Rect2(139.20001, 75.999985, 32, 32)
+
+[node name="MapPlayer" type="Node2D" unique_id=1605262644]
+script = ExtResource("1_pwwow")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497143884]
+texture = SubResource("AtlasTexture_c1b8l")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1193707542]
+zoom = Vector2(5, 5)

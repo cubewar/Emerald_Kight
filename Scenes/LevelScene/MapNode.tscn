@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bl7mscu45f7yd"]
+
+[ext_resource type="Script" uid="uid://bobn6ystu0syh" path="res://Scripts/map_node.gd" id="1_iks38"]
+[ext_resource type="Texture2D" uid="uid://bm2qvgt7pd1r6" path="res://Assets/sprites/fruit.png" id="2_3rgbf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jywvd"]
+atlas = ExtResource("2_3rgbf")
+region = Rect2(0, 0, 14.966782, 16.718294)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3rgbf"]
+
+[node name="MapNode" type="Area2D" unique_id=786387588]
+script = ExtResource("1_iks38")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1078453977]
+texture = SubResource("AtlasTexture_jywvd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1742935509]
+shape = SubResource("CircleShape2D_3rgbf")

@@ -24,9 +24,9 @@ region = Rect2(64, 0, 64, 64)
 atlas = ExtResource("1_efbct")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_spf5s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy426"]
 atlas = ExtResource("1_efbct")
-region = Rect2(0, 128, 64, 64)
+region = Rect2(192, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bda6a"]
 atlas = ExtResource("1_efbct")
@@ -44,13 +44,13 @@ region = Rect2(128, 64, 64, 64)
 atlas = ExtResource("1_efbct")
 region = Rect2(192, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oy426"]
-atlas = ExtResource("1_efbct")
-region = Rect2(64, 128, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ix425"]
 atlas = ExtResource("1_efbct")
 region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spf5s"]
+atlas = ExtResource("1_efbct")
+region = Rect2(128, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3wgy"]
 animations = [{
@@ -86,7 +86,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_spf5s")
+"texture": SubResource("AtlasTexture_oy426")
 }],
 "loop": true,
 "name": &"Jump",
@@ -111,10 +111,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_r6efi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oy426")
+"texture": SubResource("AtlasTexture_ix425")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ix425")
+"texture": SubResource("AtlasTexture_spf5s")
 }],
 "loop": true,
 "name": &"Run",
@@ -337,7 +337,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6333333),
+"times": PackedFloat32Array(0, 0.19397403, 0.3, 0.6333333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 0]
