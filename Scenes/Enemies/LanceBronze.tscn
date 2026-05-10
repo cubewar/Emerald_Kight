@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bproidm4vjlx2"]
+
+[ext_resource type="Script" uid="uid://dailgye2q47m0" path="res://Scenes/Enemies/lance_bronze.gd" id="1_i8vhk"]
+[ext_resource type="Texture2D" uid="uid://bifxxk68ajgrh" path="res://Assets/sprites/BronzeLancer-Sheet.png" id="2_i8vhk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dpv56"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6fh7"]
+atlas = ExtResource("2_i8vhk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8vhk"]
+atlas = ExtResource("2_i8vhk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpv56"]
+atlas = ExtResource("2_i8vhk")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i8vhk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6fh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8vhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpv56")
+}],
+"loop": true,
+"name": &"Patrol",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8vhk"]
+size = Vector2(15, 13)
+
+[node name="BronzeLancer" type="CharacterBody2D" unique_id=1198491175]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_i8vhk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=791052174]
+shape = SubResource("CapsuleShape2D_dpv56")
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=110099217]
+position = Vector2(-30, 0)
+target_position = Vector2(0, 24)
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=833330089]
+position = Vector2(32, 0)
+target_position = Vector2(0, 24)
+
+[node name="EntityVison" type="RayCast2D" parent="." unique_id=629868786]
+target_position = Vector2(60, 0)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=481390416]
+position = Vector2(2, -2)
+sprite_frames = SubResource("SpriteFrames_i8vhk")
+animation = &"Patrol"
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1660059408]
+
+[node name="SpearHitbox" type="Area2D" parent="." unique_id=374685488]
+position = Vector2(17, 3)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearHitbox" unique_id=385115522]
+shape = SubResource("RectangleShape2D_i8vhk")
+disabled = true
+
+[node name="EnemyHurtbox" type="Area2D" parent="." unique_id=1445847674]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=1794188170]
+shape = SubResource("CapsuleShape2D_dpv56")
+
+[connection signal="body_entered" from="SpearHitbox" to="." method="_on_spear_hitbox_body_entered"]

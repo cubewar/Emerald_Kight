@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Emerald Knight"
-run/main_scene="uid://c8oirpj38le1x"
+run/main_scene="uid://dlk8n51k80fgl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 Music="*res://Scenes/GameScenes/music.tscn"
 Global="*uid://b2c0f2r8bijg6"
+Dialog="*uid://ws75hhiywlyi"
 
 [display]
 
@@ -58,6 +59,12 @@ attack={
 [internationalization]
 
 locale/translations=PackedStringArray("res://Crystal kingdom localization - Sheet1.en.translation", "res://Crystal kingdom localization - Sheet1.kr.translation")
+
+[layer_names]
+
+2d_physics/layer_1="Enviornment"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemies"
 
 [rendering]
 

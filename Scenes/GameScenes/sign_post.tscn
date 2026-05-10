@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b6oqaau5kepxn"]
+
+[ext_resource type="Texture2D" uid="uid://dqk5gaafood5p" path="res://Assets/sprites/SignPost64.png" id="1_cvjh0"]
+[ext_resource type="Script" uid="uid://e1nsvf5gqbfl" path="res://Scripts/sign_post.gd" id="1_h16io"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h16io"]
+radius = 31.96102
+
+[node name="SignPost" type="Area2D" unique_id=1712607992]
+scale = Vector2(0.25030485, 0.25054753)
+collision_mask = 2
+script = ExtResource("1_h16io")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=647905630]
+position = Vector2(-1.9073486e-06, 0)
+scale = Vector2(1.0000004, 1)
+shape = SubResource("CircleShape2D_h16io")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=957640598]
+texture = ExtResource("1_cvjh0")

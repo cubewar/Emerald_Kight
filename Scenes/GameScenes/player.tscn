@@ -121,11 +121,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3smsa"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nmouh"]
 radius = 6.0
+height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tv8qt"]
-radius = 20.024984
+radius = 18.0
 
 [sub_resource type="Animation" id="Animation_efbct"]
 resource_name = "Attack"
@@ -368,6 +369,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=1496604547]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_nmouh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1692028794]
@@ -376,10 +378,12 @@ animation = &"Light_Attack"
 frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=171403223]
-position = Vector2(-5, 2)
-shape = SubResource("CircleShape2D_3smsa")
+position = Vector2(-5, -1)
+shape = SubResource("CapsuleShape2D_nmouh")
 
 [node name="HammmerHitBox" type="Area2D" parent="." unique_id=1332530915]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HammmerHitBox" unique_id=1759660486]
 position = Vector2(12, -1)

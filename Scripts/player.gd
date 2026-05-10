@@ -17,6 +17,8 @@ const CHARGE_TIME_REQUIRED: float = 0.6 # How many seconds to hold to get a heav
 var jump_buffer_timer: float = 0.0
 const JUMP_BUFFER_TIME: float = 0.1 
 
+var knockback_velocity: Vector2 = Vector2.ZERO
+
 var is_invincible: bool = false
 var invincibility_timer: float = 0.0
 const INVINCIBILITY_TIME: float = 1.0 # 1 second of safety after getting hit
@@ -42,6 +44,12 @@ func _ready():
 	
 
 func _physics_process(delta: float) -> void:
+	if knockback_velocity != Vector2.ZERO:
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 800 * delta)
+		velocity = knockback_velocity
+		move_and_slide()
+		return # Skip the rest of the movement logic while flying backwards!
+		
 	if is_invincible:
 		invincibility_timer -= delta
 		if invincibility_timer <= 0:
@@ -265,7 +273,7 @@ func _on_hammmer_hit_box_area_entered(area: Area2D) -> void:
 
 # --- HEALTH LOGIC ---
 
-func take_damage(amount: int):
+func take_damage(amount: int, hit_direction: float):
 	# If we are currently invincible, ignore the hit entirely!
 	if is_invincible:
 		return 
@@ -286,6 +294,7 @@ func take_damage(amount: int):
 		
 		# Make the player 50% transparent to visually show they are invincible
 		$AnimatedSprite2D.modulate.a = 0.5
+		knockback_velocity = Vector2(hit_direction * 200, -150)
 
 func upgrade_max_health():
 	if Global.max_health < 5:

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bl7mscu45f7yd"]
 
 [ext_resource type="Script" uid="uid://bobn6ystu0syh" path="res://Scripts/map_node.gd" id="1_iks38"]
-[ext_resource type="Texture2D" uid="uid://bm2qvgt7pd1r6" path="res://Assets/sprites/fruit.png" id="2_3rgbf"]
+[ext_resource type="Texture2D" uid="uid://pt1nlufept2m" path="res://Assets/sprites/Level_Icons-Sheet.png" id="2_3rgbf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jywvd"]
 atlas = ExtResource("2_3rgbf")
-region = Rect2(0, 0, 14.966782, 16.718294)
+region = Rect2(40.815643, 8.584866, 13.208694, 13.672157)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3rgbf"]
 
