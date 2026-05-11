@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c1l5b3r60m818"]
+
+[ext_resource type="Script" uid="uid://dtaqlbgspcm5r" path="res://Scenes/Enemies/bronze_kight.gd" id="1_bg2gq"]
+[ext_resource type="Texture2D" uid="uid://b12itj3pqwnx8" path="res://Assets/HPBar/Under.png" id="1_tgd42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgd42"]
+size = Vector2(20, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bg2gq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bg2gq"]
+size = Vector2(20, 26)
+
+[node name="BronzeKight" type="CharacterBody2D" unique_id=1556862518]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_bg2gq")
+
+[node name="EnemyHurtbox" type="Area2D" parent="." unique_id=266047753]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=1241651801]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_tgd42")
+
+[node name="BossHitbox" type="Area2D" parent="." unique_id=1989917700]
+position = Vector2(-24, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossHitbox" unique_id=1946702163]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_bg2gq")
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=175809186]
+light_mask = 5
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_bg2gq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1146443975]
+position = Vector2(0, -3)
+scale = Vector2(0.24999999, 1)
+texture = ExtResource("1_tgd42")

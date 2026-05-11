@@ -1,0 +1,193 @@
+[gd_scene format=4 uid="uid://br7coimkejmrp"]
+
+[ext_resource type="Texture2D" uid="uid://boq2bnevbc7b" path="res://Assets/sprites/world_tileset.png" id="1_dufnp"]
+[ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_6772w"]
+[ext_resource type="PackedScene" uid="uid://b4fcfyhrjq5ed" path="res://Scenes/Enemies/BossBar.tscn" id="3_w16gt"]
+[ext_resource type="PackedScene" uid="uid://c1l5b3r60m818" path="res://Scenes/Enemies/BronzeKight.tscn" id="4_5o0eh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6772w"]
+texture = ExtResource("1_dufnp")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+15:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+15:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+3:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+6:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+15:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+15:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+13:13/0 = 0
+13:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:13/0 = 0
+14:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:13/0 = 0
+15:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+13:14/0 = 0
+13:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:14/0 = 0
+14:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:14/0 = 0
+15:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+13:15/0 = 0
+13:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:15/0 = 0
+14:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:15/0 = 0
+15:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_w16gt"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 255
+sources/0 = SubResource("TileSetAtlasSource_6772w")
+
+[node name="BronzeBossLevel" type="Node2D" unique_id=721841802]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=524786281]
+tile_map_data = PackedByteArray("AAAGAAYAAAAOAA0AAAAHAAYAAAAOAA0AAAAIAAYAAAAOAA0AAAAJAAYAAAAOAA0AAAAKAAYAAAAOAA0AAAALAAYAAAAOAA0AAAAMAAYAAAAOAA0AAAANAAYAAAAOAA0AAAAOAAYAAAAOAA0AAAAPAAYAAAAOAA0AAAAQAAYAAAAOAA0AAAARAAYAAAAOAA0AAAASAAYAAAAOAA0AAAATAAYAAAAOAA0AAAAUAAYAAAAOAA0AAAAVAAYAAAAOAA0AAAAWAAYAAAAOAA0AAAACAAYAAAAOAA0AAAABAAYAAAAOAA0AAAAAAAYAAAAOAA0AAAADAAYAAAAOAA0AAAAEAAYAAAAOAA0AAAAFAAYAAAAOAA0AAAAFAAcAAAAOAA4AAAAFAAgAAAAOAA8AAAAEAAgAAAAOAA8AAAADAAgAAAAOAA8AAAACAAgAAAAOAA8AAAACAAcAAAAOAA4AAAABAAcAAAAOAA4AAAAAAAcAAAAOAA4AAAADAAcAAAAOAA4AAAAEAAcAAAAOAA4AAAABAAgAAAAOAA8AAAAAAAgAAAAOAA8AAAAGAAgAAAAOAA8AAAAHAAgAAAAOAA8AAAAIAAgAAAAOAA8AAAAJAAgAAAAOAA8AAAAKAAgAAAAOAA8AAAALAAgAAAAOAA8AAAAMAAgAAAAOAA8AAAANAAgAAAAOAA8AAAAOAAgAAAAOAA8AAAAPAAgAAAAOAA8AAAAQAAgAAAAOAA8AAAARAAgAAAAOAA8AAAASAAgAAAAOAA8AAAATAAgAAAAOAA8AAAAUAAgAAAAOAA8AAAAVAAgAAAAOAA8AAAAWAAgAAAAOAA8AAAAWAAcAAAAOAA4AAAAVAAcAAAAOAA4AAAAUAAcAAAAOAA4AAAATAAcAAAAOAA4AAAASAAcAAAAOAA4AAAARAAcAAAAOAA4AAAAQAAcAAAAOAA4AAAAPAAcAAAAOAA4AAAAOAAcAAAAOAA4AAAANAAcAAAAOAA4AAAAMAAcAAAAOAA4AAAALAAcAAAAOAA4AAAAKAAcAAAAOAA4AAAAJAAcAAAAOAA4AAAAIAAcAAAAOAA4AAAAHAAcAAAAOAA4AAAAGAAcAAAAOAA4AAAD7/wYAAAAOAA0AAAD8/wYAAAAOAA0AAAD9/wYAAAAOAA0AAAD+/wYAAAAOAA0AAAD//wYAAAAOAA0AAAD//wcAAAAOAA4AAAD+/wcAAAAOAA4AAAD9/wcAAAAOAA4AAAD8/wcAAAAOAA4AAAD7/wcAAAAOAA4AAAD6/wcAAAANAA4AAAD6/wgAAAANAA8AAAD7/wgAAAAOAA8AAAD8/wgAAAAOAA8AAAD9/wgAAAAOAA8AAAD+/wgAAAAOAA8AAAD//wgAAAAOAA8AAAAXAAcAAAAOAA4AAAAXAAYAAAAOAA0AAAAYAAYAAAAOAA0AAAAYAAcAAAAOAA4AAAAZAAcAAAAOAA4AAAAZAAYAAAAOAA0AAAAXAAgAAAAOAA8AAAAYAAgAAAAOAA8AAAAZAAgAAAAOAA8AAAAaAAgAAAAPAA8AAAAaAAcAAAAPAA4AAAAaAAYAAAAPAA0AAAD6/wYAAAANAA0AAAA=")
+tile_set = SubResource("TileSet_w16gt")
+
+[node name="Player" parent="." unique_id=1496604547 instance=ExtResource("2_6772w")]
+position = Vector2(8, 80)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1667378678]
+
+[node name="BossBar" parent="CanvasLayer" unique_id=322971609 instance=ExtResource("3_w16gt")]
+anchors_preset = 12
+anchor_top = 1.0
+offset_top = -88.0
+grow_vertical = 0
+
+[node name="BronzeKight" parent="." unique_id=1556862518 node_paths=PackedStringArray("player") instance=ExtResource("4_5o0eh")]
+position = Vector2(240, 56)
+player = NodePath("../Player")
+
+[connection signal="health_changed" from="BronzeKight" to="CanvasLayer/BossBar" method="_on_bronze_kight_health_changed"]

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b73a541kf4v0q"]
 
-[ext_resource type="PackedScene" uid="uid://b6oqaau5kepxn" path="res://Scenes/GameScenes/sign_post.tscn" id="1_fwl6j"]
-[ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_7h22o"]
-[ext_resource type="Script" uid="uid://dkm7nbdas6qva" path="res://Scenes/GameScenes/cutscene_director.gd" id="3_tjomp"]
-[ext_resource type="Texture2D" uid="uid://b0jvaiudu021d" path="res://Assets/sprites/RubyKing.png" id="4_tjomp"]
-[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/LevelScene/level_transition.tscn" id="5_tl4yn"]
+[ext_resource type="PackedScene" uid="uid://b6oqaau5kepxn" path="res://Scenes/GameScenes/sign_post.tscn" id="1_jly11"]
+[ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_eksq4"]
+[ext_resource type="Script" uid="uid://dkm7nbdas6qva" path="res://Scenes/GameScenes/cutscene_director.gd" id="3_n1u73"]
+[ext_resource type="Texture2D" uid="uid://b0jvaiudu021d" path="res://Assets/sprites/RubyKing.png" id="4_da3cx"]
+[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/LevelScene/level_transition.tscn" id="5_qnn8e"]
 
 [sub_resource type="Animation" id="Animation_3s5ty"]
 resource_name = "boss_reveal"
@@ -19,15 +19,15 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tl4yn"]
-atlas = ExtResource("4_tjomp")
+atlas = ExtResource("4_da3cx")
 
 [node name="ThroneRoom" type="Node2D" unique_id=802296293]
 
-[node name="SignPost" parent="." unique_id=1712607992 instance=ExtResource("1_fwl6j")]
+[node name="SignPost" parent="." unique_id=1712607992 instance=ExtResource("1_jly11")]
 position = Vector2(44.000004, 4)
 collision_layer = 0
 
-[node name="Player" parent="." unique_id=1496604547 instance=ExtResource("2_7h22o")]
+[node name="Player" parent="." unique_id=1496604547 instance=ExtResource("2_eksq4")]
 position = Vector2(0, -8)
 
 [node name="Area2D" type="StaticBody2D" parent="." unique_id=1698891922]
@@ -37,7 +37,7 @@ position = Vector2(0, 8)
 polygon = PackedVector2Array(0, 0, -85, -35, -149, -35, -150, -112, -213, -114, -216, -195, -131, -186, -158, -219, -363, -210, -206, 80, 424, 81, 424, 0)
 
 [node name="CutsceneDirector" type="Node2D" parent="." unique_id=1785649084 node_paths=PackedStringArray("player")]
-script = ExtResource("3_tjomp")
+script = ExtResource("3_n1u73")
 player = NodePath("../Player")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CutsceneDirector" unique_id=1273115384]
@@ -47,7 +47,7 @@ libraries/ = SubResource("AnimationLibrary_ourk5")
 position = Vector2(-114, -52)
 texture = SubResource("AtlasTexture_tl4yn")
 
-[node name="LevelTransition" parent="." unique_id=849457353 instance=ExtResource("5_tl4yn")]
+[node name="LevelTransition" parent="." unique_id=849457353 instance=ExtResource("5_qnn8e")]
 position = Vector2(401, 0)
 next_scene_path = "uid://dlk8n51k80fgl"
 
