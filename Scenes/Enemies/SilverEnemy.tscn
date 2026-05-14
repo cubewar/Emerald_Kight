@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bwpjuqyrvwdlv"]
+
+[ext_resource type="Script" uid="uid://b8xvf1jsqd2cm" path="res://Scenes/Enemies/silver_enemy.gd" id="1_fvs7v"]
+[ext_resource type="PackedScene" uid="uid://cknyd0lkcbwsu" path="res://Scenes/Enemies/SilverProjectile.tscn" id="2_0m7vj"]
+[ext_resource type="Texture2D" uid="uid://7214fs7r6xpu" path="res://Assets/HPBar/Over.png" id="2_bjari"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bjari"]
+
+[node name="SilverEnemy" type="CharacterBody2D" unique_id=89952065]
+script = ExtResource("1_fvs7v")
+projectile_scene = ExtResource("2_0m7vj")
+
+[node name="PlayerHitbox2" type="CollisionShape2D" parent="." unique_id=1535626800]
+shape = SubResource("CircleShape2D_bjari")
+
+[node name="PlayerVision" type="RayCast2D" parent="." unique_id=574987265]
+target_position = Vector2(75, 0)
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1073976767]
+scale = Vector2(0.34375, 1)
+texture = ExtResource("2_bjari")
+
+[node name="EnemyHurtbox" type="Area2D" parent="." unique_id=1939244284]
+
+[node name="PlayerHitbox" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=1169427366]
+shape = SubResource("CircleShape2D_bjari")
+
+[connection signal="body_entered" from="EnemyHurtbox" to="." method="_on_enemy_hurtbox_body_entered"]
