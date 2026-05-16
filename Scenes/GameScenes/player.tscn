@@ -121,12 +121,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tv8qt"]
+radius = 15.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nmouh"]
 radius = 6.0
 height = 18.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tv8qt"]
-radius = 18.0
 
 [sub_resource type="Animation" id="Animation_efbct"]
 resource_name = "Attack"
@@ -134,7 +134,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Pivot/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +146,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Pivot/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -158,7 +158,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HammmerHitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("Pivot/HammerHitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -173,7 +173,7 @@ resource_name = "Charge"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Pivot/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -185,7 +185,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Pivot/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -200,7 +200,7 @@ resource_name = "Heavy_Attack"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Pivot/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -212,7 +212,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Pivot/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -224,7 +224,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HammmerHitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("Pivot/HammerHitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -240,7 +240,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/path = NodePath("Pivot/AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -252,7 +252,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/path = NodePath("Pivot/AnimatedSprite2D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -267,7 +267,7 @@ resource_name = "Jump"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Pivot/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -279,7 +279,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Pivot/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -294,7 +294,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Pivot/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -306,7 +306,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Pivot/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -318,7 +318,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HammmerHitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("Pivot/HammerHitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -334,7 +334,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/path = NodePath("Pivot/AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -346,7 +346,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/path = NodePath("Pivot/AnimatedSprite2D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -372,34 +372,35 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_nmouh")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1692028794]
+[node name="Pivot" type="Node2D" parent="." unique_id=549637487]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1692028794]
+position = Vector2(5, 0)
 sprite_frames = SubResource("SpriteFrames_x3wgy")
 animation = &"Light_Attack"
 frame = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=171403223]
-position = Vector2(-5, -1)
-shape = SubResource("CapsuleShape2D_nmouh")
-
-[node name="HammmerHitBox" type="Area2D" parent="." unique_id=1332530915]
+[node name="HammerHitBox" type="Area2D" parent="Pivot" unique_id=1332530915]
+position = Vector2(13, 0)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HammmerHitBox" unique_id=1759660486]
-position = Vector2(12, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HammerHitBox" unique_id=1759660486]
 shape = SubResource("CircleShape2D_tv8qt")
 disabled = true
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=171403223]
+shape = SubResource("CapsuleShape2D_nmouh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1438170827]
 libraries/ = SubResource("AnimationLibrary_bda6a")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1434027243]
-zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.82
 script = ExtResource("2_0pqpv")
 
 [node name="Timer" type="Timer" parent="." unique_id=2046420916]
 
-[connection signal="area_entered" from="HammmerHitBox" to="." method="_on_hammmer_hit_box_area_entered"]
+[connection signal="area_entered" from="Pivot/HammerHitBox" to="." method="_on_hammmer_hit_box_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

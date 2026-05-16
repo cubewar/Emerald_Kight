@@ -3,6 +3,12 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
+# --- GRAVITY & JUMP FEEL VARIABLES ---
+const TERMINAL_VELOCITY = 500.0 # Maximum falling speed
+const APEX_THRESHOLD = 50.0     # The vertical speed range where we trigger "hang time"
+const APEX_GRAVITY_MULT = 0.5   # Cut gravity in half at the peak of the jump
+
+
 # -- MOMENTUM VARIABLES ---
 const ACCELERATION = 800.0 # How fast the knight reaches max speed
 const FRICTION = 1000.0    # How fast the knight slides to a stop
@@ -25,7 +31,6 @@ const INVINCIBILITY_TIME: float = 1.0 # 1 second of safety after getting hit
 
 signal health_changed(current_health: int, max_health: int)
 
-
 enum State {
 	IDLE,
 	RUN,
@@ -33,30 +38,32 @@ enum State {
 	FALL,
 	ATTACK,
 	CHARGE,
-	HEAVY_ATTACK
+	HEAVY_ATTACK,
+	HURT
 }
 
 @export var current_state : State = State.IDLE
 
+var horizontal_input: float = 0.0
+
 func _ready():
 	# Shout out our starting health so the UI can draw it
 	health_changed.emit(Global.current_health, Global.max_health)
+	change_state(State.IDLE)
 	
 
 func _physics_process(delta: float) -> void:
-	if knockback_velocity != Vector2.ZERO:
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 800 * delta)
-		velocity = knockback_velocity
-		move_and_slide()
-		return # Skip the rest of the movement logic while flying backwards!
-		
+	# 1. Read Inputs ONCE per frame
+	horizontal_input = Input.get_axis("moveLeft", "moveRight")
+	
+	# 2. I-Frame Logic
 	if is_invincible:
 		invincibility_timer -= delta
 		if invincibility_timer <= 0:
 			is_invincible = false
-			$AnimatedSprite2D.modulate.a = 1.0 # Return sprite to full opacity (solid)
+			$AnimatedSprite2D.modulate.a = 1.0 
 			
-	# 1. Update Game Feel Timers
+	# 3. Update Game Feel Timers
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
 	else:
@@ -67,12 +74,23 @@ func _physics_process(delta: float) -> void:
 	else:
 		jump_buffer_timer -= delta
 
-	# 2. Add gravity globally
+	# 4. Add gravity globally (Unless we are charging/grounded)
 	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# 3. Run the logic specific to our current state
-	# We pass 'delta' into our states now so Acceleration/Friction works smoothly
+		var applied_gravity = get_gravity().y 
+		
+		# --- HANG TIME (JUMP APEX) ---
+		# If our vertical speed is close to 0 (the peak of the jump), reduce gravity!
+		if abs(velocity.y) < APEX_THRESHOLD and current_state != State.HURT:
+			applied_gravity *= APEX_GRAVITY_MULT
+			
+		velocity.y += applied_gravity * delta
+		
+		# --- TERMINAL VELOCITY ---
+		# Don't let the player fall faster than our max speed limit
+		if velocity.y > TERMINAL_VELOCITY:
+			velocity.y = TERMINAL_VELOCITY
+			
+	# 5. Run the logic specific to our current state
 	match current_state:
 		State.IDLE:
 			state_idle(delta)
@@ -88,147 +106,144 @@ func _physics_process(delta: float) -> void:
 			state_charge(delta)
 		State.HEAVY_ATTACK:
 			state_heavy_attack(delta)
+		State.HURT:
+			state_hurt(delta) # NEW: Hurt logic runs here now
 			
-	# 4. Always apply movement at the very end of the frame!
+	# 6. Apply movement
 	move_and_slide()
 
 
 # --- STATE LOGIC FUNCTIONS ---
+func change_state(new_state: State) -> void:
+	if current_state == new_state:
+		return # Don't restart animations if we are already in this state
+		
+	current_state = new_state
+	
+	# Play animations ONLY when entering a new state!
+	match current_state:
+		State.IDLE:
+			$AnimationPlayer.play("Idle")
+		State.RUN:
+			$AnimationPlayer.play("Run")
+		State.JUMP:
+			$AnimationPlayer.play("Jump")
+		State.FALL:
+			# $AnimationPlayer.play("Fall")
+			pass
+		State.ATTACK:
+			$AnimationPlayer.play("Attack")
+		State.CHARGE:
+			$AnimationPlayer.play("Charge")
+		State.HEAVY_ATTACK:
+			$AnimationPlayer.play("Heavy_Attack")
+		State.HURT:
+			# $AnimationPlayer.play("Hurt") # Uncomment if you have a hurt animation
+			pass
+
 
 func state_idle(delta):
-	$AnimationPlayer.play("Idle") 
-	# NEW: Smoothly slide to a stop using FRICTION
 	velocity.x = move_toward(velocity.x, 0, FRICTION * delta) 
 	
-	# Transitions
 	if Input.is_action_just_pressed("attack"):
-		current_state = State.ATTACK
+		change_state(State.ATTACK)
 	elif jump_buffer_timer > 0.0 and coyote_timer > 0.0: 
 		perform_jump()
-	elif Input.get_axis("moveLeft", "moveRight"):
-		current_state = State.RUN
+	elif horizontal_input != 0:
+		change_state(State.RUN)
 	elif not is_on_floor():
-		current_state = State.FALL
+		change_state(State.FALL)
 
 func state_run(delta):
-	$AnimationPlayer.play("Run") 
-	var direction = Input.get_axis("moveLeft", "moveRight")
-	
-	# NEW: Smoothly speed up using ACCELERATION
-	if direction:
-		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
-		$AnimatedSprite2D.flip_h = direction < 0
+	if horizontal_input:
+		velocity.x = move_toward(velocity.x, horizontal_input * SPEED, ACCELERATION * delta)
+		update_facing(horizontal_input)
 	else:
-		# If we let go of the keys, go back to IDLE (where friction will slow us down)
-		current_state = State.IDLE 
+		change_state(State.IDLE) 
 		
-	# Transitions
 	if Input.is_action_just_pressed("attack"):
-		current_state = State.ATTACK
+		change_state(State.ATTACK)
 	elif jump_buffer_timer > 0.0 and coyote_timer > 0.0:
 		perform_jump()
 	elif not is_on_floor():
-		current_state = State.FALL
+		change_state(State.FALL)
 
 func state_jump(delta):
-	$AnimationPlayer.play("Jump") 
-	
-	# NEW: Variable Jump Height (Short Hop)
-	# If we let go of jump while moving UP, cut upward speed in half!
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= 0.5
 	
-	var direction = Input.get_axis("moveLeft", "moveRight")
-	if direction:
-		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
-		$AnimatedSprite2D.flip_h = direction < 0
+	if horizontal_input:
+		velocity.x = move_toward(velocity.x, horizontal_input * SPEED, ACCELERATION * delta)
+		update_facing(horizontal_input)
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 
-	# Transitions
 	if Input.is_action_just_pressed("attack"):
-		current_state = State.ATTACK
+		change_state(State.ATTACK)
 	elif velocity.y > 0: 
-		current_state = State.FALL
+		change_state(State.FALL)
 
 func state_fall(delta):
-	# $AnimationPlayer.play("Fall") 
-	
-	var direction = Input.get_axis("moveLeft", "moveRight")
-	if direction:
-		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
-		$AnimatedSprite2D.flip_h = direction < 0
+	if horizontal_input:
+		velocity.x = move_toward(velocity.x, horizontal_input * SPEED, ACCELERATION * delta)
+		update_facing(horizontal_input)
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 
-	# Transitions
 	if Input.is_action_just_pressed("attack"):
-		current_state = State.ATTACK
+		change_state(State.ATTACK)
 	elif jump_buffer_timer > 0.0 and coyote_timer > 0.0: 
 		perform_jump()
 	elif is_on_floor():
-		if Input.get_axis("moveLeft", "moveRight"):
-			current_state = State.RUN
+		if horizontal_input != 0:
+			change_state(State.RUN)
 		else:
-			current_state = State.IDLE
+			change_state(State.IDLE)
 
 func state_attack(delta):
-	$AnimationPlayer.play("Attack")
-	
-	var direction = Input.get_axis("moveLeft", "moveRight")
-	
-	# NEW: Attack Movement Logic
 	if is_on_floor():
-		# Ground attack: Can move, but slower (half speed), and NO flipping sprite!
 		var attack_speed = SPEED * 0.5 
-		if direction:
-			velocity.x = move_toward(velocity.x, direction * attack_speed, ACCELERATION * delta)
+		if horizontal_input:
+			velocity.x = move_toward(velocity.x, horizontal_input * attack_speed, ACCELERATION * delta)
 		else:
 			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 	else:
-		# Air attack: Normal air momentum, NO flipping sprite!
-		if direction:
-			velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
+		if horizontal_input:
+			velocity.x = move_toward(velocity.x, horizontal_input * SPEED, ACCELERATION * delta)
 		else:
 			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 
 func state_charge(delta):
-	# Optional: You can make a specific "Charge" animation later
-	$AnimationPlayer.play("Charge") 
-	
-	# Root the player to the ground while charging
 	velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
-	
-	# Count up the timer
 	charge_timer += delta
 	
-	# Visual Feedback: Make the Emerald Knight glow green when fully charged!
 	if charge_timer >= CHARGE_TIME_REQUIRED:
-		$AnimatedSprite2D.modulate = Color(0.5, 2.0, 0.5) 
+		$Pivot/AnimatedSprite2D.modulate = Color(0.5, 2.0, 0.5) 
 		
-	# What happens when we let go of the button?
 	if Input.is_action_just_released("attack"):
-		$AnimatedSprite2D.modulate = Color(1.0, 1.0, 1.0) # Reset color to normal
-		
+		$Pivot/AnimatedSprite2D.modulate = Color(1.0, 1.0, 1.0) 
 		if charge_timer >= CHARGE_TIME_REQUIRED:
-			current_state = State.HEAVY_ATTACK
+			change_state(State.HEAVY_ATTACK)
 		else:
-			# Released too early! Cancel the charge.
-			current_state = State.IDLE if is_on_floor() else State.FALL
+			change_state(State.IDLE if is_on_floor() else State.FALL)
 
 func state_heavy_attack(delta):
-	$AnimationPlayer.play("Heavy_Attack") 
-	
 	if is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 	else:
-		# Allow very slow mid-air steering for the heavy slam
-		var direction = Input.get_axis("moveLeft", "moveRight")
-		if direction:
-			velocity.x = move_toward(velocity.x, direction * (SPEED * 0.3), ACCELERATION * delta)
+		if horizontal_input:
+			velocity.x = move_toward(velocity.x, horizontal_input * (SPEED * 0.3), ACCELERATION * delta)
 		else:
 			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+
+func state_hurt(delta):
+	# Apply friction to the knockback so we don't slide forever
+	velocity.x = move_toward(velocity.x, 0, (FRICTION / 2) * delta) 
 	
+	# If we hit the ground, we can recover and move again
+	if is_on_floor() and velocity.y >= 0:
+		change_state(State.IDLE)
+
 # --- HELPER FUNCTIONS ---
 
 func perform_jump():
@@ -236,6 +251,13 @@ func perform_jump():
 	jump_buffer_timer = 0.0 
 	coyote_timer = 0.0 
 	current_state = State.JUMP
+
+func update_facing(direction: float):
+	if direction > 0:
+		$Pivot.scale.x = 1.0
+	elif direction < 0:
+		$Pivot.scale.x = -1.0
+		
 
 # --- SIGNALS AND JUICE ---
 
@@ -293,7 +315,7 @@ func take_damage(amount: int, hit_direction: float):
 		invincibility_timer = INVINCIBILITY_TIME
 		
 		# Make the player 50% transparent to visually show they are invincible
-		$AnimatedSprite2D.modulate.a = 0.5
+		$Pivot/AnimatedSprite2D.modulate.a = 0.5
 		knockback_velocity = Vector2(hit_direction * 200, -150)
 
 func upgrade_max_health():

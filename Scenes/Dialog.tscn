@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ws75hhiywlyi"]
 
 [ext_resource type="Script" uid="uid://dkv0u23lroq50" path="res://Scripts/dialog.gd" id="1_0tpv1"]
+[ext_resource type="FontFile" uid="uid://2bnn13rbdl4v" path="res://Assets/fonts/PixelOperator8.ttf" id="2_nm2tb"]
+[ext_resource type="FontFile" uid="uid://bhakoyki5n2pc" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_jf8ex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jf8ex"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -9,20 +11,17 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 script = ExtResource("1_0tpv1")
 
 [node name="Panel" type="Panel" parent="." unique_id=340287520]
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -504.0
-offset_top = -608.0
-offset_right = 504.0
-offset_bottom = -507.99997
+offset_left = -239.0
+offset_right = 239.0
+offset_bottom = 72.77778
 grow_horizontal = 2
-grow_vertical = 0
 scale = Vector2(1, 1.8)
 
 [node name="TextLabel" type="RichTextLabel" parent="Panel" unique_id=865014689]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,14 +31,22 @@ offset_bottom = -2.2888184e-05
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.00294, 1)
+theme_override_fonts/normal_font = ExtResource("2_nm2tb")
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_jf8ex")
 text = "Helloo"
 scroll_active = false
 
 [node name="NameLabel" type="Label" parent="Panel" unique_id=1411609163]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 478.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource("3_jf8ex")
+theme_override_font_sizes/font_size = 11
+text = "Name here"
 
 [node name="TypeTimer" type="Timer" parent="." unique_id=677344115]
 wait_time = 0.5

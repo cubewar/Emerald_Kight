@@ -31,7 +31,7 @@ collision_layer = 0
 position = Vector2(0, -8)
 
 [node name="Area2D" type="StaticBody2D" parent="." unique_id=1698891922]
-position = Vector2(0, 8)
+position = Vector2(0, 7)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1385067397]
 polygon = PackedVector2Array(0, 0, -85, -35, -149, -35, -150, -112, -213, -114, -216, -195, -131, -186, -158, -219, -363, -210, -206, 80, 424, 81, 424, 0)

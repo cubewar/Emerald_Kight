@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dxc7arxnuflp8"]
 
 [ext_resource type="Script" uid="uid://dyg8y7iw7w5ux" path="res://Scripts/main_menu.gd" id="1_8ao28"]
+[ext_resource type="Texture2D" uid="uid://bjbhltx040ekp" path="res://Assets/sprites/title-background.png" id="2_s38wd"]
 [ext_resource type="Texture2D" uid="uid://br6v2re6jeqvu" path="res://Assets/sprites/Title.png" id="2_vut4m"]
 [ext_resource type="FontFile" uid="uid://2bnn13rbdl4v" path="res://Assets/fonts/PixelOperator8.ttf" id="3_mwm5g"]
 
@@ -23,11 +24,17 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
-bg_color = Color(0.80784315, 0.80784315, 0.80784315, 1)
+bg_color = Color(0.66309756, 0.39755335, 0, 0.5137255)
+border_width_left = 50
+border_color = Color(0.4, 0.4, 0.4, 0.05490196)
+border_blend = true
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+corner_detail = 4
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 39
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erv1k"]
 
@@ -41,6 +48,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="TitleUI" unique_id=1436489681]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+texture = ExtResource("2_s38wd")
 
 [node name="TitleLogo" type="TextureRect" parent="TitleUI" unique_id=1593728256]
 texture_filter = 1
