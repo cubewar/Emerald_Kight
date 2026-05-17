@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://53w83edodxrf"]
 
-[ext_resource type="Script" uid="uid://c370wmwac7m5c" path="res://Scenes/GameScenes/life_container.gd" id="1_11lpx"]
+[ext_resource type="Script" uid="uid://c370wmwac7m5c" path="res://Scripts/life_container.gd" id="1_11lpx"]
 [ext_resource type="Texture2D" uid="uid://cb58r0m2o7pim" path="res://Assets/sprites/LifeEmerald-Sheet-Sheet.png" id="2_c6a20"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6a20"]

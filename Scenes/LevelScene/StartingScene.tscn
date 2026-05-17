@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b6oqaau5kepxn" path="res://Scenes/GameScenes/sign_post.tscn" id="1_jly11"]
 [ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_eksq4"]
-[ext_resource type="Script" uid="uid://dkm7nbdas6qva" path="res://Scenes/GameScenes/cutscene_director.gd" id="3_n1u73"]
+[ext_resource type="Script" uid="uid://dkm7nbdas6qva" path="res://Scripts/cutscene_director.gd" id="3_n1u73"]
 [ext_resource type="Texture2D" uid="uid://b0jvaiudu021d" path="res://Assets/sprites/RubyKing.png" id="4_da3cx"]
 [ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/LevelScene/level_transition.tscn" id="5_qnn8e"]
 

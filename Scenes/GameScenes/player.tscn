@@ -2,7 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://lfeyk6a7j025" path="res://Assets/sprites/EmeraldKight.png" id="1_efbct"]
 [ext_resource type="Script" uid="uid://cc5imsj8e8k0e" path="res://Scripts/player.gd" id="1_nmouh"]
-[ext_resource type="Script" uid="uid://vsm6wq2f3628" path="res://Scenes/GameScenes/camera.gd" id="2_0pqpv"]
+[ext_resource type="Script" uid="uid://vsm6wq2f3628" path="res://Scripts/camera.gd" id="2_0pqpv"]
+[ext_resource type="Script" uid="uid://dtwo6c2kiy77x" path="res://Scripts/ModulerScripts/fx_controller.gd" id="4_bda6a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdc84"]
 atlas = ExtResource("1_efbct")
@@ -401,6 +402,11 @@ position_smoothing_speed = 3.82
 script = ExtResource("2_0pqpv")
 
 [node name="Timer" type="Timer" parent="." unique_id=2046420916]
+
+[node name="FXController" type="Node2D" parent="." unique_id=860122275 node_paths=PackedStringArray("target_sprite", "target_camera")]
+script = ExtResource("4_bda6a")
+target_sprite = NodePath("../Pivot/AnimatedSprite2D")
+target_camera = NodePath("../Camera2D")
 
 [connection signal="area_entered" from="Pivot/HammerHitBox" to="." method="_on_hammmer_hit_box_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

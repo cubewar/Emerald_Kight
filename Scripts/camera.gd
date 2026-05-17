@@ -10,7 +10,7 @@ const LOOK_AHEAD_SPEED: float = 2.0      # How fast the camera pans left/right
 var base_offset: Vector2 = Vector2.ZERO  # Stores the smooth look-ahead position
 
 # We grab the player's sprite so we know which way they are facing
-@onready var player_sprite = get_parent().get_node("AnimatedSprite2D")
+@onready var player_sprite = $"../Pivot/AnimatedSprite2D"
 
 func apply_shake(strength: float = 10.0):
 	shake_strength = strength

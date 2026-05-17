@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		invincibility_timer -= delta
 		if invincibility_timer <= 0:
 			is_invincible = false
-			$AnimatedSprite2D.modulate.a = 1.0 
+			$FXController.set_opacity(1.0)
 			
 	# 3. Update Game Feel Timers
 	if is_on_floor():
@@ -272,10 +272,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		# Heavy attack is done, return to normal
 		current_state = State.IDLE if is_on_floor() else State.FALL
 
-func hit_stop():
-	Engine.time_scale = 0.1
-	await get_tree().create_timer(0.05, true, false, true).timeout
-	Engine.time_scale = 1.0
+
 
 func _on_hammmer_hit_box_area_entered(area: Area2D) -> void:
 	if area.name == "EnemyHurtbox":
@@ -283,12 +280,12 @@ func _on_hammmer_hit_box_area_entered(area: Area2D) -> void:
 		
 		# --- CHECK WHICH ATTACK WE ARE USING ---
 		if current_state == State.HEAVY_ATTACK:
-			hit_stop()
-			$Camera2D.apply_shake(30.0) # Massive screen shake!
+			$FXController.play_hit_stop(0.05, 0.1) # Much heavier hit stop
+			$FXController.play_shake(30.0)
 			area.get_parent().take_damage(3, direction_to_enemy) # Deal 3 Damage
 		else:
-			hit_stop()
-			$Camera2D.apply_shake(15.0) # Normal shake
+			$FXController.play_hit_stop(0.1, 0.05) 
+			$FXController.play_shake(15.0)
 			area.get_parent().take_damage(1, direction_to_enemy) # Deal 1 Damage
 		
 		
@@ -314,9 +311,11 @@ func take_damage(amount: int, hit_direction: float):
 		is_invincible = true
 		invincibility_timer = INVINCIBILITY_TIME
 		
-		# Make the player 50% transparent to visually show they are invincible
-		$Pivot/AnimatedSprite2D.modulate.a = 0.5
+		$FXController.flash_color(Color.RED, 0.2) # Flash red when hurt!
+		$FXController.set_opacity(0.5) # Set I-Frame transparency
+		
 		knockback_velocity = Vector2(hit_direction * 200, -150)
+		change_state(State.HURT)
 
 func upgrade_max_health():
 	if Global.max_health < 5:
