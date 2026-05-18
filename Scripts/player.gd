@@ -129,7 +129,7 @@ func change_state(new_state: State) -> void:
 		State.JUMP:
 			$AnimationPlayer.play("Jump")
 		State.FALL:
-			# $AnimationPlayer.play("Fall")
+			$AnimationPlayer.play("Jump")
 			pass
 		State.ATTACK:
 			$AnimationPlayer.play("Attack")
@@ -250,7 +250,7 @@ func perform_jump():
 	velocity.y = JUMP_VELOCITY
 	jump_buffer_timer = 0.0 
 	coyote_timer = 0.0 
-	current_state = State.JUMP
+	change_state(State.JUMP)
 
 func update_facing(direction: float):
 	if direction > 0:
@@ -264,13 +264,13 @@ func update_facing(direction: float):
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Attack":
 		if Input.is_action_pressed("attack"):
-			current_state = State.CHARGE
+			change_state(State.CHARGE)
 			charge_timer = 0.0 # Reset the timer
 		else:
-			current_state = State.IDLE if is_on_floor() else State.FALL
+			change_state(State.IDLE if is_on_floor() else State.FALL)
 	elif anim_name == "Heavy_Attack":
 		# Heavy attack is done, return to normal
-		current_state = State.IDLE if is_on_floor() else State.FALL
+		change_state(State.IDLE if is_on_floor() else State.FALL)
 
 
 
@@ -314,7 +314,7 @@ func take_damage(amount: int, hit_direction: float):
 		$FXController.flash_color(Color.RED, 0.2) # Flash red when hurt!
 		$FXController.set_opacity(0.5) # Set I-Frame transparency
 		
-		knockback_velocity = Vector2(hit_direction * 200, -150)
+		velocity = Vector2(hit_direction * 200, -150)
 		change_state(State.HURT)
 
 func upgrade_max_health():

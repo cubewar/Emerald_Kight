@@ -126,8 +126,10 @@ func flip_boss(new_direction):
 	# Move the hitbox to the correct side!
 	if facing_direction == 1:
 		$BossHitbox.position.x = abs($BossHitbox.position.x) # Right side
+		$Sprite2D.flip_h = false
 	else:
 		$BossHitbox.position.x = -abs($BossHitbox.position.x) # Left side
+		$Sprite2D.flip_h = true
 
 # --- COMBAT LOGIC ---
 
