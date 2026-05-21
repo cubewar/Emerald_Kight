@@ -29,6 +29,7 @@ var is_invincible: bool = false
 var invincibility_timer: float = 0.0
 const INVINCIBILITY_TIME: float = 1.0 # 1 second of safety after getting hit
 
+
 signal health_changed(current_health: int, max_health: int)
 
 enum State {
@@ -42,13 +43,15 @@ enum State {
 	HURT
 }
 
+@onready var health_bar = $CanvasLayer/HUD/HealthBar
+
 @export var current_state : State = State.IDLE
 
 var horizontal_input: float = 0.0
 
 func _ready():
-	# Shout out our starting health so the UI can draw it
-	health_changed.emit(Global.current_health, Global.max_health)
+	health_bar.max_value = Global.max_health
+	health_bar.value = Global.current_health
 	change_state(State.IDLE)
 	
 
@@ -301,8 +304,8 @@ func take_damage(amount: int, hit_direction: float):
 	
 	if Global.current_health < 0:
 		Global.current_health = 0
-		
-	health_changed.emit(Global.current_health, Global.max_health)
+	
+	health_bar.value = Global.current_health
 	
 	if Global.current_health == 0:
 		die()

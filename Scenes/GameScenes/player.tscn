@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cc5imsj8e8k0e" path="res://Scripts/player.gd" id="1_nmouh"]
 [ext_resource type="Script" uid="uid://vsm6wq2f3628" path="res://Scripts/camera.gd" id="2_0pqpv"]
 [ext_resource type="Script" uid="uid://dtwo6c2kiy77x" path="res://Scripts/ModulerScripts/fx_controller.gd" id="4_bda6a"]
+[ext_resource type="PackedScene" uid="uid://53w83edodxrf" path="res://Scenes/GameScenes/UI/HUD.tscn" id="5_tv8qt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdc84"]
 atlas = ExtResource("1_efbct")
@@ -408,5 +409,10 @@ script = ExtResource("4_bda6a")
 target_sprite = NodePath("../Pivot/AnimatedSprite2D")
 target_camera = NodePath("../Camera2D")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1995894533]
+
+[node name="HUD" parent="CanvasLayer" unique_id=330115987 instance=ExtResource("5_tv8qt")]
+
+[connection signal="health_changed" from="." to="CanvasLayer/HUD" method="update_health"]
 [connection signal="area_entered" from="Pivot/HammerHitBox" to="." method="_on_hammmer_hit_box_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

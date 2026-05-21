@@ -1,24 +1,48 @@
 [gd_scene format=3 uid="uid://53w83edodxrf"]
 
-[ext_resource type="Script" uid="uid://c370wmwac7m5c" path="res://Scripts/life_container.gd" id="1_11lpx"]
+[ext_resource type="Script" uid="uid://c370wmwac7m5c" path="res://Scripts/HealthBar.gd" id="1_11lpx"]
+[ext_resource type="Texture2D" uid="uid://ixwatmdqrswx" path="res://Assets/HPBar/OverLay.png" id="1_61v1b"]
 [ext_resource type="Texture2D" uid="uid://cb58r0m2o7pim" path="res://Assets/sprites/LifeEmerald-Sheet-Sheet.png" id="2_c6a20"]
+[ext_resource type="Texture2D" uid="uid://7214fs7r6xpu" path="res://Assets/HPBar/Over.png" id="2_sasle"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c6a20"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61v1b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30a7u"]
 atlas = ExtResource("2_c6a20")
-region = Rect2(7.911911, 7.1786346, 16.624619, 16.963905)
+region = Rect2(8, 8, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_taogt"]
-atlas = ExtResource("2_c6a20")
-region = Rect2(39.65699, 6.8393555, 16.432411, 16.963905)
-
-[node name="HUD" type="CanvasLayer" unique_id=330115987]
-
-[node name="LifeContainer" type="HBoxContainer" parent="." unique_id=360452237]
-custom_minimum_size = Vector2(5, 5)
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(2, 2)
-theme_override_constants/separation = 4
+[node name="HUD" type="Panel" unique_id=1964053138]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 153.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_61v1b")
 script = ExtResource("1_11lpx")
-life_full = SubResource("AtlasTexture_c6a20")
-life_empty = SubResource("AtlasTexture_taogt")
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1931507781]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 8.0
+offset_right = 84.5
+offset_bottom = 20.0
+scale = Vector2(2, 2)
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 1
+stretch_margin_right = 3
+stretch_margin_bottom = 1
+texture_over = ExtResource("1_61v1b")
+texture_progress = ExtResource("2_sasle")
+tint_progress = Color(0, 1, 0.4565451, 1)
+
+[node name="HeartTexture" type="TextureRect" parent="." unique_id=911676577]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 39.0
+offset_bottom = 35.0
+texture = SubResource("AtlasTexture_30a7u")
