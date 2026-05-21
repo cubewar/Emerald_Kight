@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://b73a541kf4v0q"]
 
-[ext_resource type="PackedScene" uid="uid://b6oqaau5kepxn" path="res://Scenes/GameScenes/sign_post.tscn" id="1_jly11"]
-[ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_eksq4"]
-[ext_resource type="Script" uid="uid://dkm7nbdas6qva" path="res://Scripts/cutscene_director.gd" id="3_n1u73"]
-[ext_resource type="Texture2D" uid="uid://b0jvaiudu021d" path="res://Assets/sprites/RubyKing.png" id="4_da3cx"]
-[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/LevelScene/level_transition.tscn" id="5_qnn8e"]
+[ext_resource type="PackedScene" uid="uid://b6oqaau5kepxn" path="res://Scenes/GameScenes/Objects/sign_post.tscn" id="1_mkj7p"]
+[ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_ekhe3"]
+[ext_resource type="Script" uid="uid://dkm7nbdas6qva" path="res://Scripts/cutscene_director.gd" id="3_nxk3q"]
+[ext_resource type="Texture2D" uid="uid://b0jvaiudu021d" path="res://Assets/sprites/RubyKing.png" id="4_0f6l0"]
+[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/LevelScene/level_transition.tscn" id="5_jnc7v"]
+[ext_resource type="Texture2D" uid="uid://bi88hsbknbs6k" path="res://Assets/sprites/throneRoomGround.png" id="6_2j0ji"]
 
 [sub_resource type="Animation" id="Animation_3s5ty"]
 resource_name = "boss_reveal"
@@ -19,16 +20,16 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tl4yn"]
-atlas = ExtResource("4_da3cx")
+atlas = ExtResource("4_0f6l0")
 
 [node name="ThroneRoom" type="Node2D" unique_id=802296293]
 
-[node name="SignPost" parent="." unique_id=1712607992 instance=ExtResource("1_jly11")]
+[node name="SignPost" parent="." unique_id=1712607992 instance=ExtResource("1_mkj7p")]
 position = Vector2(44.000004, 4)
 collision_layer = 0
 
-[node name="Player" parent="." unique_id=1496604547 instance=ExtResource("2_eksq4")]
-position = Vector2(0, -8)
+[node name="Player" parent="." unique_id=1496604547 instance=ExtResource("2_ekhe3")]
+position = Vector2(13, -2)
 
 [node name="Area2D" type="StaticBody2D" parent="." unique_id=1698891922]
 position = Vector2(0, 7)
@@ -37,7 +38,7 @@ position = Vector2(0, 7)
 polygon = PackedVector2Array(0, 0, -85, -35, -149, -35, -150, -112, -213, -114, -216, -195, -131, -186, -158, -219, -363, -210, -206, 80, 424, 81, 424, 0)
 
 [node name="CutsceneDirector" type="Node2D" parent="." unique_id=1785649084 node_paths=PackedStringArray("player")]
-script = ExtResource("3_n1u73")
+script = ExtResource("3_nxk3q")
 player = NodePath("../Player")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CutsceneDirector" unique_id=1273115384]
@@ -47,9 +48,13 @@ libraries/ = SubResource("AnimationLibrary_ourk5")
 position = Vector2(-114, -52)
 texture = SubResource("AtlasTexture_tl4yn")
 
-[node name="LevelTransition" parent="." unique_id=849457353 instance=ExtResource("5_qnn8e")]
+[node name="LevelTransition" parent="." unique_id=849457353 instance=ExtResource("5_jnc7v")]
 position = Vector2(401, 0)
 next_scene_path = "uid://dlk8n51k80fgl"
+
+[node name="ThroneRoomGround" type="Sprite2D" parent="." unique_id=1586671774]
+position = Vector2(180, -39)
+texture = ExtResource("6_2j0ji")
 
 [connection signal="body_entered" from="SignPost" to="SignPost" method="_on_body_entered"]
 [connection signal="body_exited" from="SignPost" to="SignPost" method="_on_body_exited"]

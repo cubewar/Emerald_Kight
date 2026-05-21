@@ -376,7 +376,7 @@ script = ExtResource("1_nmouh")
 [node name="Pivot" type="Node2D" parent="." unique_id=549637487]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1692028794]
-position = Vector2(5, 0)
+position = Vector2(5, 1)
 sprite_frames = SubResource("SpriteFrames_x3wgy")
 animation = &"Light_Attack"
 frame = 2

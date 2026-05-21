@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://br7coimkejmrp"]
 
-[ext_resource type="Texture2D" uid="uid://boq2bnevbc7b" path="res://Assets/sprites/world_tileset.png" id="1_dufnp"]
-[ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_6772w"]
-[ext_resource type="PackedScene" uid="uid://b4fcfyhrjq5ed" path="res://Scenes/Enemies/BossBar.tscn" id="3_w16gt"]
-[ext_resource type="PackedScene" uid="uid://c1l5b3r60m818" path="res://Scenes/Enemies/BronzeKight.tscn" id="4_5o0eh"]
+[ext_resource type="Texture2D" uid="uid://boq2bnevbc7b" path="res://Assets/sprites/world_tileset.png" id="1_fmaok"]
+[ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_meqs8"]
+[ext_resource type="PackedScene" uid="uid://b4fcfyhrjq5ed" path="res://Scenes/GameScenes/UI/BossBar.tscn" id="3_vxo6r"]
+[ext_resource type="PackedScene" uid="uid://c1l5b3r60m818" path="res://Scenes/GameScenes/Enemies/BronzeKight.tscn" id="4_dfs7q"]
+[ext_resource type="PackedScene" uid="uid://dqp4to54p721o" path="res://Scenes/GameScenes/Util/BossArena.tscn" id="5_f8pvi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6772w"]
-texture = ExtResource("1_dufnp")
+texture = ExtResource("1_fmaok")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -175,19 +176,26 @@ sources/0 = SubResource("TileSetAtlasSource_6772w")
 tile_map_data = PackedByteArray("AAAGAAYAAAAOAA0AAAAHAAYAAAAOAA0AAAAIAAYAAAAOAA0AAAAJAAYAAAAOAA0AAAAKAAYAAAAOAA0AAAALAAYAAAAOAA0AAAAMAAYAAAAOAA0AAAANAAYAAAAOAA0AAAAOAAYAAAAOAA0AAAAPAAYAAAAOAA0AAAAQAAYAAAAOAA0AAAARAAYAAAAOAA0AAAASAAYAAAAOAA0AAAATAAYAAAAOAA0AAAAUAAYAAAAOAA0AAAAVAAYAAAAOAA0AAAAWAAYAAAAOAA0AAAACAAYAAAAOAA0AAAABAAYAAAAOAA0AAAAAAAYAAAAOAA0AAAADAAYAAAAOAA0AAAAEAAYAAAAOAA0AAAAFAAYAAAAOAA0AAAAFAAcAAAAOAA4AAAAFAAgAAAAOAA8AAAAEAAgAAAAOAA8AAAADAAgAAAAOAA8AAAACAAgAAAAOAA8AAAACAAcAAAAOAA4AAAABAAcAAAAOAA4AAAAAAAcAAAAOAA4AAAADAAcAAAAOAA4AAAAEAAcAAAAOAA4AAAABAAgAAAAOAA8AAAAAAAgAAAAOAA8AAAAGAAgAAAAOAA8AAAAHAAgAAAAOAA8AAAAIAAgAAAAOAA8AAAAJAAgAAAAOAA8AAAAKAAgAAAAOAA8AAAALAAgAAAAOAA8AAAAMAAgAAAAOAA8AAAANAAgAAAAOAA8AAAAOAAgAAAAOAA8AAAAPAAgAAAAOAA8AAAAQAAgAAAAOAA8AAAARAAgAAAAOAA8AAAASAAgAAAAOAA8AAAATAAgAAAAOAA8AAAAUAAgAAAAOAA8AAAAVAAgAAAAOAA8AAAAWAAgAAAAOAA8AAAAWAAcAAAAOAA4AAAAVAAcAAAAOAA4AAAAUAAcAAAAOAA4AAAATAAcAAAAOAA4AAAASAAcAAAAOAA4AAAARAAcAAAAOAA4AAAAQAAcAAAAOAA4AAAAPAAcAAAAOAA4AAAAOAAcAAAAOAA4AAAANAAcAAAAOAA4AAAAMAAcAAAAOAA4AAAALAAcAAAAOAA4AAAAKAAcAAAAOAA4AAAAJAAcAAAAOAA4AAAAIAAcAAAAOAA4AAAAHAAcAAAAOAA4AAAAGAAcAAAAOAA4AAAD7/wYAAAAOAA0AAAD8/wYAAAAOAA0AAAD9/wYAAAAOAA0AAAD+/wYAAAAOAA0AAAD//wYAAAAOAA0AAAD//wcAAAAOAA4AAAD+/wcAAAAOAA4AAAD9/wcAAAAOAA4AAAD8/wcAAAAOAA4AAAD7/wcAAAAOAA4AAAD6/wcAAAANAA4AAAD6/wgAAAANAA8AAAD7/wgAAAAOAA8AAAD8/wgAAAAOAA8AAAD9/wgAAAAOAA8AAAD+/wgAAAAOAA8AAAD//wgAAAAOAA8AAAAXAAcAAAAOAA4AAAAXAAYAAAAOAA0AAAAYAAYAAAAOAA0AAAAYAAcAAAAOAA4AAAAZAAcAAAAOAA4AAAAZAAYAAAAOAA0AAAAXAAgAAAAOAA8AAAAYAAgAAAAOAA8AAAAZAAgAAAAOAA8AAAAaAAgAAAAPAA8AAAAaAAcAAAAPAA4AAAAaAAYAAAAPAA0AAAD6/wYAAAANAA0AAAA=")
 tile_set = SubResource("TileSet_w16gt")
 
-[node name="Player" parent="." unique_id=1496604547 instance=ExtResource("2_6772w")]
-position = Vector2(8, 80)
+[node name="Player" parent="." unique_id=1496604547 instance=ExtResource("2_meqs8")]
+position = Vector2(-24, 80)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1667378678]
 
-[node name="BossBar" parent="CanvasLayer" unique_id=322971609 instance=ExtResource("3_w16gt")]
-anchors_preset = 12
-anchor_top = 1.0
-offset_top = -88.0
-grow_vertical = 0
+[node name="BossBar" parent="CanvasLayer" unique_id=322971609 instance=ExtResource("3_vxo6r")]
+anchors_preset = 10
+anchor_bottom = 0.0
+grow_vertical = 1
 
-[node name="BronzeKight" parent="." unique_id=1556862518 node_paths=PackedStringArray("player") instance=ExtResource("4_5o0eh")]
-position = Vector2(240, 56)
+[node name="BronzeKight" parent="." unique_id=1556862518 node_paths=PackedStringArray("player") instance=ExtResource("4_dfs7q")]
+position = Vector2(241, 56)
 player = NodePath("../Player")
+
+[node name="BossArena" parent="." unique_id=630935008 node_paths=PackedStringArray("boss_node") instance=ExtResource("5_f8pvi")]
+position = Vector2(112, 64)
+boss_node = NodePath("../BronzeKight")
+limit_left = 16
+limit_right = 325
+limit_top = -64
+limit_bottom = 96
 
 [connection signal="health_changed" from="BronzeKight" to="CanvasLayer/BossBar" method="_on_bronze_kight_health_changed"]

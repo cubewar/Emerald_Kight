@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bproidm4vjlx2"]
 
-[ext_resource type="Script" uid="uid://dailgye2q47m0" path="res://Scenes/Enemies/lance_bronze.gd" id="1_i8vhk"]
+[ext_resource type="Script" uid="uid://dailgye2q47m0" path="res://Scenes/GameScenes/Enemies/lance_bronze.gd" id="1_i8vhk"]
 [ext_resource type="Texture2D" uid="uid://bifxxk68ajgrh" path="res://Assets/sprites/Enemies/BronzeLancer-Sheet.png" id="2_i8vhk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dpv56"]

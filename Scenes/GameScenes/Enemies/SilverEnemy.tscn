@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bwpjuqyrvwdlv"]
 
-[ext_resource type="Script" uid="uid://b8xvf1jsqd2cm" path="res://Scenes/Enemies/silver_enemy.gd" id="1_fvs7v"]
-[ext_resource type="PackedScene" uid="uid://cknyd0lkcbwsu" path="res://Scenes/Enemies/SilverProjectile.tscn" id="2_0m7vj"]
+[ext_resource type="Script" uid="uid://b8xvf1jsqd2cm" path="res://Scenes/GameScenes/Enemies/silver_enemy.gd" id="1_fvs7v"]
+[ext_resource type="PackedScene" uid="uid://cknyd0lkcbwsu" path="res://Scenes/GameScenes/Enemies/SilverProjectile.tscn" id="2_0m7vj"]
 [ext_resource type="Texture2D" uid="uid://7214fs7r6xpu" path="res://Assets/HPBar/Over.png" id="2_bjari"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bjari"]
