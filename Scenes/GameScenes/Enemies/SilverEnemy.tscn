@@ -2,28 +2,86 @@
 
 [ext_resource type="Script" uid="uid://b8xvf1jsqd2cm" path="res://Scenes/GameScenes/Enemies/silver_enemy.gd" id="1_fvs7v"]
 [ext_resource type="PackedScene" uid="uid://cknyd0lkcbwsu" path="res://Scenes/GameScenes/Enemies/SilverProjectile.tscn" id="2_0m7vj"]
-[ext_resource type="Texture2D" uid="uid://7214fs7r6xpu" path="res://Assets/HPBar/Over.png" id="2_bjari"]
+[ext_resource type="Texture2D" uid="uid://cketbkuxsjdca" path="res://Assets/sprites/Enemies/SilverMarksmen-Sheet.png" id="3_5ivx5"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bjari"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ivx5"]
+size = Vector2(20, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ivx5"]
+radius = 146.03082
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6hw2"]
+size = Vector2(20, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6hw2"]
+atlas = ExtResource("3_5ivx5")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lx50"]
+atlas = ExtResource("3_5ivx5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3ied"]
+atlas = ExtResource("3_5ivx5")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuout"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6hw2")
+}],
+"loop": true,
+"name": &"Detected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lx50")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3ied")
+}],
+"loop": true,
+"name": &"Shoot",
+"speed": 5.0
+}]
 
 [node name="SilverEnemy" type="CharacterBody2D" unique_id=89952065]
+collision_layer = 4
 script = ExtResource("1_fvs7v")
 projectile_scene = ExtResource("2_0m7vj")
 
 [node name="PlayerHitbox2" type="CollisionShape2D" parent="." unique_id=1535626800]
-shape = SubResource("CircleShape2D_bjari")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_5ivx5")
 
-[node name="PlayerVision" type="RayCast2D" parent="." unique_id=574987265]
-target_position = Vector2(75, 0)
+[node name="PlayerVision" type="Area2D" parent="." unique_id=1149221122]
+light_mask = 0
+visibility_layer = 2
 collision_mask = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1073976767]
-scale = Vector2(0.34375, 1)
-texture = ExtResource("2_bjari")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerVision" unique_id=989077466]
+shape = SubResource("CircleShape2D_5ivx5")
 
 [node name="EnemyHurtbox" type="Area2D" parent="." unique_id=1939244284]
+collision_layer = 4
+collision_mask = 2
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=1169427366]
-shape = SubResource("CircleShape2D_bjari")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_s6hw2")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=397297531]
+scale = Vector2(0.78125, 0.75)
+sprite_frames = SubResource("SpriteFrames_tuout")
+animation = &"Idle"
+
+[connection signal="body_entered" from="PlayerVision" to="." method="_on_player_vision_body_entered"]
+[connection signal="body_exited" from="PlayerVision" to="." method="_on_player_vision_body_exited"]
 [connection signal="body_entered" from="EnemyHurtbox" to="." method="_on_enemy_hurtbox_body_entered"]

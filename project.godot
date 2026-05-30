@@ -21,9 +21,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Music="*res://Scenes/GameScenes/music.tscn"
 Global="*uid://b2c0f2r8bijg6"
 Dialog="*uid://ws75hhiywlyi"
+SoundManager="*uid://dk817dcef30t2"
 
 [display]
 

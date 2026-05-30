@@ -5,7 +5,8 @@ extends CharacterBody2D
 var health: int = 2
 var facing_direction: int = -1
 var state_timer: float = 2.0 
-
+var isPlayerNear = false
+var player = null
 @onready var player_vision = $PlayerVision # A RayCast2D to see the player
 
 enum State { IDLE, SHOOT }
@@ -23,31 +24,35 @@ func _physics_process(delta: float) -> void:
 			state_shoot()
 
 func state_idle(delta):
+	
 	# Wait for 2 seconds, checking for the player
 	state_timer -= delta
-	
-	if player_vision.is_colliding() and state_timer <= 0:
-		var target = player_vision.get_collider()
-		if target and target.name == "Player":
+	if isPlayerNear:
+		$AnimatedSprite2D.play("Detected")
+	else:
+		$AnimatedSprite2D.play("Idle")
+		
+	if isPlayerNear and state_timer <= 0:
+		if player:
 			current_state = State.SHOOT
 
 func state_shoot():
-	# 1. Turn Red to warn the player they are firing
-	$Sprite2D.modulate = Color.RED
-	
-	# 2. CREATE THE PROJECTILE
+	# 1. Turn Blue to warn the player
+	$AnimatedSprite2D.play("Shoot")
+	# 2. Instantiate the projectile
 	var new_projectile = projectile_scene.instantiate()
-	
-	# CRITICAL: Add it to the Level, NOT the enemy! 
-	# If you add it to the enemy, it will move when the enemy moves.
 	get_tree().current_scene.add_child(new_projectile)
 	
-	# 3. Position it slightly in front of the enemy
-	new_projectile.global_position = global_position + Vector2(facing_direction * 20, 0)
-	new_projectile.direction = facing_direction
+	# 3. Calculate the exact diagonal angle to the player
+	var aim_vector = (player.global_position - global_position).normalized()
 	
-	# 4. Go back to idle and wait 2 seconds before firing again
-	$Sprite2D.modulate = Color.WHITE
+	# 4. Position it slightly in front of the enemy (using the aim vector!)
+	new_projectile.global_position = global_position + (aim_vector * 20)
+	
+	# 5. Hand the vector over to the projectile
+	new_projectile.direction = aim_vector
+	
+	# 6. Reset
 	state_timer = 2.0
 	current_state = State.IDLE
 
@@ -60,3 +65,15 @@ func take_damage(amount: int, hit_direction: float = 0.0):
 
 func _on_enemy_hurtbox_body_entered(body: Node2D) -> void:
 	take_damage(1)
+
+
+func _on_player_vision_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		isPlayerNear = true
+		player = body
+
+
+func _on_player_vision_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		isPlayerNear = false
+		player = null

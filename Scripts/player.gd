@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+const JUMPSOUND = preload("res://Scenes/Sounds/SFX/jump.wav")
+
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
@@ -172,6 +175,7 @@ func state_run(delta):
 		change_state(State.FALL)
 
 func state_jump(delta):
+	
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= 0.5
 	
@@ -250,6 +254,7 @@ func state_hurt(delta):
 # --- HELPER FUNCTIONS ---
 
 func perform_jump():
+	SoundManager.play_sfx(JUMPSOUND)
 	velocity.y = JUMP_VELOCITY
 	jump_buffer_timer = 0.0 
 	coyote_timer = 0.0 

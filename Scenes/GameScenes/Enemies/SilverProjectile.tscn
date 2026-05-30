@@ -14,19 +14,15 @@ region = Rect2(97.2061, 0, 13.9039, 17.450974)
 script = ExtResource("1_wxa4e")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1132778363]
+position = Vector2(-1, 0)
 texture = SubResource("AtlasTexture_mgsr1")
 
-[node name="PlayerHitbox" type="Area2D" parent="." unique_id=1292948480]
-
-[node name="colision2d" type="CollisionShape2D" parent="PlayerHitbox" unique_id=730045277]
-shape = SubResource("CircleShape2D_wxa4e")
-
-[node name="EnemyHurtbox" type="Area2D" parent="." unique_id=200544888]
+[node name="EnemyHurtbox" type="Area2D" parent="." unique_id=1292948480]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 2
 script = ExtResource("1_c8ob0")
 
-[node name="colision2d" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=1760125345]
+[node name="colision2d" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=730045277]
 shape = SubResource("CircleShape2D_wxa4e")
 
-[connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_entered" from="EnemyHurtbox" to="." method="_on_enemy_hurtbox_body_entered"]
