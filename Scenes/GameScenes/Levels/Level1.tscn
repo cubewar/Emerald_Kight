@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bproidm4vjlx2" path="res://Scenes/GameScenes/Enemies/LanceBronze.tscn" id="3_yxmjx"]
 [ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/LevelScene/level_transition.tscn" id="4_6oe51"]
 [ext_resource type="PackedScene" uid="uid://bwpjuqyrvwdlv" path="res://Scenes/GameScenes/Enemies/SilverEnemy.tscn" id="5_h0r1b"]
+[ext_resource type="PackedScene" uid="uid://v7dylvhitjbd" path="res://Scenes/GameScenes/Viliger1.tscn" id="6_ifrqp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k1gca"]
 texture = ExtResource("1_j3wsq")
@@ -187,3 +188,6 @@ next_scene_path = "uid://br7coimkejmrp"
 
 [node name="SilverEnemy" parent="." unique_id=89952065 instance=ExtResource("5_h0r1b")]
 position = Vector2(260, -15)
+
+[node name="Viliger1" parent="." unique_id=790880084 instance=ExtResource("6_ifrqp")]
+position = Vector2(-11, 46)

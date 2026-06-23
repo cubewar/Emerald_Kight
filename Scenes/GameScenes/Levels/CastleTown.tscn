@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dmtqcwdqvnbi5"]
+
+[ext_resource type="PackedScene" uid="uid://v7dylvhitjbd" path="res://Scenes/GameScenes/Viliger1.tscn" id="1_j44wv"]
+[ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_7ayp5"]
+
+[node name="CastleTown" type="Node2D" unique_id=365057538]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=426844190]
+collision_mask = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1023857766]
+polygon = PackedVector2Array(183, 158, -123, 156, -374, 160, -505, 135, -599, 161, -774, 169, -789, 352, 131, 340, 468, 344, 465, 142)
+
+[node name="Viliger1" parent="." unique_id=790880084 instance=ExtResource("1_j44wv")]
+position = Vector2(-174, 140)
+
+[node name="Player" parent="." unique_id=1496604547 instance=ExtResource("2_7ayp5")]
+position = Vector2(-17, 127)
