@@ -286,6 +286,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_hammmer_hit_box_area_entered(area: Area2D) -> void:
 	if area.name == "EnemyHurtbox":
+		print("Hit")
 		var direction_to_enemy = sign(area.global_position.x - global_position.x)
 		
 		# --- CHECK WHICH ATTACK WE ARE USING ---

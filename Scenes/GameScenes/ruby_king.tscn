@@ -47,11 +47,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdie5"]
+size = Vector2(20, 24)
+
 [node name="RubyKing" type="CharacterBody2D" unique_id=1742568333]
 scale = Vector2(0.9945633, 1)
 script = ExtResource("1_tdie5")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1593025303]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1593025303]
 sprite_frames = SubResource("SpriteFrames_pgnpg")
 animation = &"Hurt"
 speed_scale = 0.1
@@ -60,3 +63,10 @@ speed_scale = 0.1
 scale = Vector2(1.8260213, 1.6373132)
 build_mode = 1
 polygon = PackedVector2Array(0, -7.392, 0, 3.651, 8.81, 3.516, 8.810117, 14.658159, -15.45, 14.658, -15.245, -14.859, -13.215176, -14.658159, -13.215176, -9.772106, -4.4050584, -9.772106)
+
+[node name="EnemyHurtbox" type="Area2D" parent="." unique_id=740423343]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=72428671]
+position = Vector2(-16.087463, -4)
+shape = SubResource("RectangleShape2D_tdie5")

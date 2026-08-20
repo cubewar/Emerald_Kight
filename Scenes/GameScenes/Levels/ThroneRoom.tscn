@@ -49,6 +49,7 @@ position = Vector2(401, 0)
 next_scene_path = "uid://dlk8n51k80fgl"
 
 [node name="ThroneRoomGround" type="Sprite2D" parent="." unique_id=1586671774]
+z_index = -1
 position = Vector2(180, -39)
 texture = ExtResource("6_2j0ji")
 

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dgxu5deulu57s" path="res://Scenes/GameScenes/Enemies/enemy_hurtbox.gd" id="1_c8ob0"]
 [ext_resource type="Script" uid="uid://dts0fqhdup5uq" path="res://Scenes/GameScenes/Enemies/silver_projectile.gd" id="1_wxa4e"]
-[ext_resource type="Texture2D" uid="uid://c676ulo3c66ga" path="res://Assets/sprites/coin.png" id="2_efv31"]
+[ext_resource type="Texture2D" uid="uid://cb4r50db8r2qu" path="res://Assets/sprites/Enemies/SilverMarksmen-SpriteSheet.png" id="2_750b4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgsr1"]
-atlas = ExtResource("2_efv31")
-region = Rect2(97.2061, 0, 13.9039, 17.450974)
+atlas = ExtResource("2_750b4")
+region = Rect2(281.03482, 282.75897, 14.060577, 13.089264)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wxa4e"]
 
