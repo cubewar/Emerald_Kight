@@ -344,3 +344,11 @@ func upgrade_max_health():
 func die():
 	# For now, just reload the scene when we die
 	get_tree().reload_current_scene()
+	
+
+func play_footstep():
+	# Randomize pitch so every step sounds slightly different and natural
+	var random_pitch = randf_range(0.85, 1.15)
+	
+	# Pass the sound, drop the volume a bit (-5.0 dB), and apply the random pitch
+	SoundManager.play_sfx(WALKSOUND, -5.0, random_pitch)
