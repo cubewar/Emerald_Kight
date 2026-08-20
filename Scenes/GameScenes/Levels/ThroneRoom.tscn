@@ -32,7 +32,7 @@ position = Vector2(13, -2)
 position = Vector2(0, 7)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1385067397]
-polygon = PackedVector2Array(0, 0, -85, -35, -149, -35, -150, -112, -213, -114, -216, -195, -131, -186, -158, -219, -363, -210, -206, 80, 424, 81, 424, 0)
+polygon = PackedVector2Array(0, 0, -85, -35, -149, -35, -150, -112, -213, -114, -216, -195, -131, -186, -158, -219, -363, -210, -206, 80, 656, 81, 656, 1)
 
 [node name="CutsceneDirector" type="Node2D" parent="." unique_id=1785649084 node_paths=PackedStringArray("player")]
 script = ExtResource("3_nxk3q")
@@ -45,12 +45,12 @@ libraries/ = SubResource("AnimationLibrary_ourk5")
 position = Vector2(-114, -52)
 
 [node name="LevelTransition" parent="." unique_id=849457353 instance=ExtResource("5_jnc7v")]
-position = Vector2(401, 0)
+position = Vector2(688, -16)
 next_scene_path = "uid://dlk8n51k80fgl"
 
 [node name="ThroneRoomGround" type="Sprite2D" parent="." unique_id=1586671774]
 z_index = -1
-position = Vector2(180, -39)
+position = Vector2(304, -40)
 texture = ExtResource("6_2j0ji")
 
 [connection signal="body_entered" from="SignPost" to="SignPost" method="_on_body_entered"]

@@ -3,7 +3,8 @@ extends CharacterBody2D
 #--sounds ---
 const JUMPSOUND = preload("res://Scenes/Sounds/SFX/jump.wav")
 const HURTSOUND = preload("res://Scenes/Sounds/SFX/hurt.wav")
-
+const HITSOUND = preload("res://Scenes/Sounds/SFX/explosion.wav")
+const WALKSOUND = preload("res://Scenes/Sounds/SFX/walk.wav")
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -47,7 +48,7 @@ enum State {
 	HEAVY_ATTACK,
 	HURT
 }
-
+@onready var dust_particles = $DustParticles
 @onready var health_bar = $CanvasLayer/HUD/HealthBar
 
 @export var current_state : State = State.IDLE
@@ -74,8 +75,11 @@ func _physics_process(delta: float) -> void:
 	# 3. Update Game Feel Timers
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
+		if horizontal_input:
+			dust_particles.emitting = true
 	else:
 		coyote_timer -= delta
+		dust_particles.emitting = false
 		
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = JUMP_BUFFER_TIME
@@ -152,7 +156,7 @@ func change_state(new_state: State) -> void:
 
 func state_idle(delta):
 	velocity.x = move_toward(velocity.x, 0, FRICTION * delta) 
-	
+	dust_particles.emitting = false
 	if Input.is_action_just_pressed("attack"):
 		change_state(State.ATTACK)
 	elif jump_buffer_timer > 0.0 and coyote_timer > 0.0: 
@@ -286,7 +290,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_hammmer_hit_box_area_entered(area: Area2D) -> void:
 	if area.name == "EnemyHurtbox":
-		print("Hit")
+		SoundManager.play_sfx(HITSOUND)
 		var direction_to_enemy = sign(area.global_position.x - global_position.x)
 		
 		# --- CHECK WHICH ATTACK WE ARE USING ---
