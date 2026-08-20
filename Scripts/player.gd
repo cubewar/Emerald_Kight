@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
-
+#--sounds ---
 const JUMPSOUND = preload("res://Scenes/Sounds/SFX/jump.wav")
+const HURTSOUND = preload("res://Scenes/Sounds/SFX/hurt.wav")
+
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -315,12 +317,13 @@ func take_damage(amount: int, hit_direction: float):
 	if Global.current_health == 0:
 		die()
 	else:
-		# We didn't die, so trigger I-Frames!
+		
 		is_invincible = true
 		invincibility_timer = INVINCIBILITY_TIME
 		
 		$FXController.flash_color(Color.RED, 0.2) # Flash red when hurt!
 		$FXController.set_opacity(0.5) # Set I-Frame transparency
+		SoundManager.play_sfx(HURTSOUND)
 		
 		velocity = Vector2(hit_direction * 200, -150)
 		change_state(State.HURT)

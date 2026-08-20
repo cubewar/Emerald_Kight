@@ -5,6 +5,8 @@ signal health_changed(current_health, max_health)
 signal boss_defeated
 
 # --- STATS ---
+@export var boss_name: String = "Bronze Knight"
+@export var boss_color: Color = Color.DARK_ORANGE # Or whatever color you want!
 var max_health: int = 20
 var health: int = max_health
 const WALK_SPEED: float = 50.0
@@ -52,6 +54,7 @@ func _physics_process(delta: float) -> void:
 		State.WAKEUP:
 			state_wakeup(delta)
 		State.CHASE:
+			$AnimationPlayer.play("Chase")
 			state_chase()
 		State.WINDUP:
 			state_windup(delta)
@@ -117,13 +120,22 @@ func state_smash(delta):
 	visual.modulate = Color.RED
 	boss_hitbox.set_deferred("disabled", false)
 	
-	velocity.x = facing_direction * SMASH_SPEED
+	# We only apply the 300 speed on the very FIRST frame of the smash
+	if state_timer == 0.3: # (Matches the exact timer from state_windup!)
+		velocity.x = facing_direction * SMASH_SPEED
+		
+		# Trigger the screen shake right when he lunges!
+		if player and player.has_node("Camera2D"):
+			player.get_node("Camera2D").apply_shake(15.0)
+	
+	# Apply heavy friction so he slides to a stop, rather than moving at a flat speed
+	velocity.x = move_toward(velocity.x, 0, 600 * delta)
 	
 	state_timer -= delta
 	if state_timer <= 0 or is_on_wall():
 		current_state = State.RECOVERY
 		state_timer = 1.5 
-		velocity.x = 0 # Fixed: Kill momentum instantly
+		velocity.x = 0
 
 func state_recovery(delta):
 	visual.modulate = Color.CORNFLOWER_BLUE
@@ -151,6 +163,14 @@ func state_up_windup(delta):
 
 func state_up_attack(delta):
 	visual.modulate = Color.RED
+	boss_hitbox.set_deferred("disabled", false) 
+	
+	# NEW: Add a heavy screen shake to make the upward swing feel powerful
+	if player and player.has_node("Camera2D"):
+		player.get_node("Camera2D").apply_shake(10.0)
+		
+	# SoundManager.play_sfx(preload("res://Scenes/Sounds/SFX/heavy_swing.wav"))
+	
 	velocity.x = 0 
 	
 	state_timer -= delta
@@ -158,10 +178,12 @@ func state_up_attack(delta):
 		current_state = State.RECOVERY
 		state_timer = 1.2 
 		
-		# --- FIXED RECOVERY RESET ---
-		$BossHitbox.position.y = default_hitbox_y # Drops hitbox back down
-		flip_boss(facing_direction) # Re-applies horizontal flip safely!
-
+		# Turn the hitbox OFF again when the swing is done
+		boss_hitbox.set_deferred("disabled", true) 
+		
+		$BossHitbox.position.y = default_hitbox_y 
+		flip_boss(facing_direction)
+		
 # --- PROPER SCRIPT-ONLY FLIPPING ---
 func flip_boss(new_direction):
 	facing_direction = new_direction
@@ -178,6 +200,7 @@ func flip_boss(new_direction):
 
 func take_damage(amount: int, hit_direction: float = 0.0):
 	health -= amount
+	print(amount)
 	knockback_velocity = Vector2(hit_direction * 50, 0)
 	health_changed.emit(health, max_health)
 	

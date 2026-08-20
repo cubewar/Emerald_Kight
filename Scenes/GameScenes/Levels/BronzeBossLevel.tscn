@@ -198,4 +198,4 @@ limit_right = 325
 limit_top = -64
 limit_bottom = 96
 
-[connection signal="health_changed" from="BronzeKight" to="CanvasLayer/BossBar" method="_on_bronze_kight_health_changed"]
+[connection signal="health_changed" from="BronzeKight" to="CanvasLayer/BossBar" method="update_health"]

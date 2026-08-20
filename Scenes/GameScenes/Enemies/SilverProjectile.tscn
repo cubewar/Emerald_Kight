@@ -11,6 +11,7 @@ region = Rect2(97.2061, 0, 13.9039, 17.450974)
 [sub_resource type="CircleShape2D" id="CircleShape2D_wxa4e"]
 
 [node name="SilverProjectile" type="Node2D" unique_id=1560379258]
+light_mask = 5
 script = ExtResource("1_wxa4e")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1132778363]

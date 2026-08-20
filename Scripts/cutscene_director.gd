@@ -5,10 +5,26 @@ extends Node2D
 
 # --- THE SCRIPT FOR YOUR OPENING SCENE ---
 var intro_text = [
-	{"name": "Ruby King", "text": "Emerald Knight... the Crystal Kingdom is fracturing."},
-	{"name": "Ruby King", "text": "The Trilateral King has grown too bold. His reign of terror must end today."},
-	{"name": "Emerald Knight", "text": "My hammer is yours, my King. Where do I find him?"},
-	{"name": "Ruby King", "text": "Beyond the jagged peaks. Go. Do not return until the Trilateral King falls."}
+	{
+		"name": "Ruby King", 
+		"text": "Emerald Knight... the Crystal Kingdom is fracturing.", 
+		"pitch": 1.3 # Deep, regal King voice
+	},
+	{
+		"name": "Ruby King", 
+		"text": "The Trilateral King has grown too bold. His reign of terror must end today.", 
+		"pitch": 1.3
+	},
+	{
+		"name": "Emerald Knight", 
+		"text": "My hammer is yours, my King. Where do I find him?", 
+		"pitch": 0.5 # Grounded, standard hero voice
+	},
+	{
+		"name": "Ruby King", 
+		"text": "Beyond the jagged peaks. Go. Do not return until the Trilateral King falls.", 
+		"pitch": 1.3
+	}
 ]
 
 func _ready() -> void:
@@ -20,19 +36,21 @@ func play_opening_cinematic():
 	# We don't want the player running around while the king is talking!
 	if player:
 		player.set_physics_process(false)
-		# Optional: Force the player into an "Idle" or "Kneel" animation here
+		# Reset horizontal velocity so the player doesn't slide if they were moving
+		player.velocity.x = 0
+		# Optional: Force an idle animation
 		# player.get_node("AnimatedSprite2D").play("Idle")
 	
 	# 2. PLAY THE OPENING ANIMATION (e.g., screen fading in)
-	anim_player.play("intro_fade_in")
-	
-	# Wait for the fade-in to finish
-	await anim_player.animation_finished 
+	if anim_player and anim_player.has_animation("intro_fade_in"):
+		anim_player.play("intro_fade_in")
+		await anim_player.animation_finished 
 	
 	# Add a tiny dramatic pause before the King speaks (0.5 seconds)
 	await get_tree().create_timer(0.5).timeout
 	
 	# 3. START THE DIALOGUE
+	# Note: If your Autoload/Singleton is named "Dialog" or "DialogueManager", make sure this matches!
 	Dialog.start_dialogue(intro_text)
 	
 	# Wait for the player to read everything and close the text box
@@ -42,5 +60,5 @@ func play_opening_cinematic():
 	if player:
 		player.set_physics_process(true)
 		
-	# Optional: You can queue_free() the director so it deletes itself and saves memory
+	# Optional: Remove the director node to clean up memory
 	queue_free()

@@ -1,63 +1,87 @@
 extends CanvasLayer
 
-@onready var text_label = $Panel/TextLabel
-@onready var name_label = $Panel/NameLabel
-@onready var type_timer = $TypeTimer
+const TEXTSOUND = preload("res://Scenes/Sounds/SFX/click.wav")
+
+@onready var text_label = $NinePatchRect/TextLabel
+@onready var name_label = $NinePatchRect/NameLabel
 
 signal dialogue_finished
 var dialogue_data: Array = []
 var current_index: int = 0
+
+# --- TYPING VARIABLES ---
 var is_typing: bool = false
+var typing_speed: float = 0.04 # Seconds per character
+var current_tween: Tween
+var current_text_raw: String = ""
+var last_char_index: int = -1
 
 func _ready():
-	# Hide the UI when the game starts
-	$Panel.hide()
+	$NinePatchRect.hide()
 
-# This is the function other scripts will call to start a conversation!
 func start_dialogue(data: Array):
 	dialogue_data = data
 	current_index = 0
-	$Panel.show()
+	$NinePatchRect.show()
 	show_next_message()
 
 func show_next_message():
-	# Check if the conversation is over
 	if current_index >= dialogue_data.size():
-		$Panel.hide()
+		$NinePatchRect.hide()
 		dialogue_finished.emit()
 		return
 	
-	# Grab the current dictionary from our array
 	var current_message = dialogue_data[current_index]
-	
-	# Update the UI text
 	name_label.text = current_message["name"]
-	text_label.text = current_message["text"]
 	
-	# Hide all text, then start the typewriter timer
+	# Set full text
+	current_text_raw = current_message["text"]
+	text_label.text = current_text_raw
+	
+	# Reset typing counters
 	text_label.visible_characters = 0
+	last_char_index = 0
 	is_typing = true
-	type_timer.start()
+	
+	if current_tween:
+		current_tween.kill()
+		
+	current_tween = create_tween()
+	var total_time = current_text_raw.length() * typing_speed
+	
+	# Animate using tween_method to catch each letter change
+	current_tween.tween_method(set_visible_chars_and_play_sound, 0, current_text_raw.length(), total_time)
+	current_tween.finished.connect(_on_typing_finished)
 
-# --- INPUT HANDLING ---
+# --- SOUND & LETTER UPDATE ---
+func set_visible_chars_and_play_sound(char_count: int) -> void:
+	text_label.visible_characters = char_count
+	
+	# Check if a new letter was revealed
+	if char_count > last_char_index and char_count <= current_text_raw.length():
+		var new_char = current_text_raw[char_count - 1]
+		
+		# Only play sound for actual characters (skip spaces and newlines)
+		if new_char != " " and new_char != "\n" and new_char != "\t":
+			play_type_sound()
+			
+		last_char_index = char_count
+
+func play_type_sound():
+	# If your SoundManager supports pitch shifting, you can add slight variation
+	SoundManager.play_sfx(TEXTSOUND)
+
+func _on_typing_finished():
+	is_typing = false
+
 func _input(event):
-	# If the panel is visible and we press our action button (e.g., "jump" or "attack")
-	if event.is_action_pressed("jump") and $Panel.visible:
+	if event.is_action_pressed("jump") and $NinePatchRect.visible:
 		if is_typing:
-			# Player pressed the button while typing: SKIP the animation!
-			text_label.visible_characters = text_label.get_total_character_count()
+			# Skip instantly to the end
+			if current_tween:
+				current_tween.kill()
+			text_label.visible_characters = -1
 			is_typing = false
-			type_timer.stop()
 		else:
-			# Player pressed the button after typing finished: GO TO NEXT LINE!
 			current_index += 1
 			show_next_message()
-
-# --- SIGNALS ---
-# Connect the TypeTimer's 'timeout' signal to this script!
-func _on_type_timer_timeout() -> void:
-	if text_label.visible_characters < text_label.get_total_character_count():
-		text_label.visible_characters += 1
-	else:
-		is_typing = false
-		type_timer.stop()

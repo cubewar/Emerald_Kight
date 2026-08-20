@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ws75hhiywlyi"]
 
 [ext_resource type="Script" uid="uid://dkv0u23lroq50" path="res://Scripts/dialog.gd" id="1_0tpv1"]
+[ext_resource type="Texture2D" uid="uid://gv5o0cfrybn7" path="res://Assets/sprites/Dlogbox.png" id="2_jf8ex"]
 [ext_resource type="FontFile" uid="uid://2bnn13rbdl4v" path="res://Assets/fonts/PixelOperator8.ttf" id="2_nm2tb"]
 [ext_resource type="FontFile" uid="uid://bhakoyki5n2pc" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_jf8ex"]
 
@@ -10,24 +11,27 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="DialogueSystem" type="CanvasLayer" unique_id=455858684]
 script = ExtResource("1_0tpv1")
 
-[node name="Panel" type="Panel" parent="." unique_id=340287520]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -239.0
-offset_right = 239.0
-offset_bottom = 72.77778
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=540025199]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 92.0
 grow_horizontal = 2
-scale = Vector2(1, 1.8)
+texture = ExtResource("2_jf8ex")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 
-[node name="TextLabel" type="RichTextLabel" parent="Panel" unique_id=865014689]
+[node name="TextLabel" type="RichTextLabel" parent="NinePatchRect" unique_id=865014689]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 21.111113
-offset_bottom = -2.2888184e-05
+offset_left = 2.0
+offset_top = 19.0
+offset_right = 2.0
+offset_bottom = -2.1111374
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.00294, 1)
@@ -39,14 +43,13 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_jf8ex")
 text = "Helloo"
 scroll_active = false
 
-[node name="NameLabel" type="Label" parent="Panel" unique_id=1411609163]
+[node name="NameLabel" type="Label" parent="NinePatchRect" unique_id=1411609163]
 texture_filter = 1
 layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
 offset_right = 478.0
-offset_bottom = 17.0
+offset_bottom = 19.0
 theme_override_fonts/font = ExtResource("3_jf8ex")
 theme_override_font_sizes/font_size = 11
 text = "Name here"
-
-[node name="TypeTimer" type="Timer" parent="." unique_id=677344115]
-wait_time = 0.5

@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 		
 		
 		# AND if the dialogue box isn't already open on the screen...
-		if not Dialog.get_node("Panel").visible:
+		if not Dialog.get_node("NinePatchRect").visible:
 			
 			# Start the conversation!
 			Dialog.start_dialogue(my_story)

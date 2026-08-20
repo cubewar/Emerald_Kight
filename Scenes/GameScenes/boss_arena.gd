@@ -47,6 +47,9 @@ func _on_trigger_zone_body_entered(body: Node2D) -> void:
 			
 		# 3. Turn off the trigger zone so it doesn't fire again
 		trigger_zone.set_deferred("monitoring", false)
+		# 4. Tell the boss to wake up and connect to the UI!
+		if boss_node and boss_node.has_method("start_fight"):
+			boss_node.start_fight()
 
 func unlock_arena():
 	# 1. Open the doors

@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://boq2bnevbc7b" path="res://Assets/sprites/world_tileset.png" id="1_tcaap"]
 [ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_jp4mu"]
 [ext_resource type="PackedScene" uid="uid://b4fcfyhrjq5ed" path="res://Scenes/GameScenes/UI/BossBar.tscn" id="3_p24eh"]
-[ext_resource type="PackedScene" uid="uid://c1l5b3r60m818" path="res://Scenes/GameScenes/Enemies/BronzeKight.tscn" id="4_p4jox"]
 [ext_resource type="PackedScene" uid="uid://dqp4to54p721o" path="res://Scenes/GameScenes/Util/BossArena.tscn" id="5_7qpn0"]
+[ext_resource type="PackedScene" uid="uid://cadc4dgdw68lf" path="res://Scenes/GameScenes/Enemies/silver_knight.tscn" id="5_tcaap"]
+[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/GameScenes/Util/level_transition.tscn" id="6_jp4mu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xf575"]
 texture = ExtResource("1_tcaap")
@@ -176,23 +177,31 @@ sources/0 = SubResource("TileSetAtlasSource_xf575")
 tile_map_data = PackedByteArray("AAAGAAYAAAAOAA0AAAAHAAYAAAAOAA0AAAAIAAYAAAAOAA0AAAAJAAYAAAAOAA0AAAAKAAYAAAAOAA0AAAALAAYAAAAOAA0AAAAMAAYAAAAOAA0AAAANAAYAAAAOAA0AAAAOAAYAAAAOAA0AAAAPAAYAAAAOAA0AAAAQAAYAAAAOAA0AAAARAAYAAAAOAA0AAAASAAYAAAAOAA0AAAATAAYAAAAOAA0AAAAUAAYAAAAOAA0AAAAVAAYAAAAOAA0AAAAWAAYAAAAOAA0AAAACAAYAAAAOAA0AAAABAAYAAAAOAA0AAAAAAAYAAAAOAA0AAAADAAYAAAAOAA0AAAAEAAYAAAAOAA0AAAAFAAYAAAAOAA0AAAAFAAcAAAAOAA4AAAAFAAgAAAAOAA8AAAAEAAgAAAAOAA8AAAADAAgAAAAOAA8AAAACAAgAAAAOAA8AAAACAAcAAAAOAA4AAAABAAcAAAAOAA4AAAAAAAcAAAAOAA4AAAADAAcAAAAOAA4AAAAEAAcAAAAOAA4AAAABAAgAAAAOAA8AAAAAAAgAAAAOAA8AAAAGAAgAAAAOAA8AAAAHAAgAAAAOAA8AAAAIAAgAAAAOAA8AAAAJAAgAAAAOAA8AAAAKAAgAAAAOAA8AAAALAAgAAAAOAA8AAAAMAAgAAAAOAA8AAAANAAgAAAAOAA8AAAAOAAgAAAAOAA8AAAAPAAgAAAAOAA8AAAAQAAgAAAAOAA8AAAARAAgAAAAOAA8AAAASAAgAAAAOAA8AAAATAAgAAAAOAA8AAAAUAAgAAAAOAA8AAAAVAAgAAAAOAA8AAAAWAAgAAAAOAA8AAAAWAAcAAAAOAA4AAAAVAAcAAAAOAA4AAAAUAAcAAAAOAA4AAAATAAcAAAAOAA4AAAASAAcAAAAOAA4AAAARAAcAAAAOAA4AAAAQAAcAAAAOAA4AAAAPAAcAAAAOAA4AAAAOAAcAAAAOAA4AAAANAAcAAAAOAA4AAAAMAAcAAAAOAA4AAAALAAcAAAAOAA4AAAAKAAcAAAAOAA4AAAAJAAcAAAAOAA4AAAAIAAcAAAAOAA4AAAAHAAcAAAAOAA4AAAAGAAcAAAAOAA4AAAD7/wYAAAAOAA0AAAD8/wYAAAAOAA0AAAD9/wYAAAAOAA0AAAD+/wYAAAAOAA0AAAD//wYAAAAOAA0AAAD//wcAAAAOAA4AAAD+/wcAAAAOAA4AAAD9/wcAAAAOAA4AAAD8/wcAAAAOAA4AAAD7/wcAAAAOAA4AAAD6/wcAAAANAA4AAAD6/wgAAAANAA8AAAD7/wgAAAAOAA8AAAD8/wgAAAAOAA8AAAD9/wgAAAAOAA8AAAD+/wgAAAAOAA8AAAD//wgAAAAOAA8AAAAXAAcAAAAOAA4AAAAXAAYAAAAOAA0AAAAYAAYAAAAOAA0AAAAYAAcAAAAOAA4AAAAZAAcAAAAOAA4AAAAZAAYAAAAOAA0AAAAXAAgAAAAOAA8AAAAYAAgAAAAOAA8AAAAZAAgAAAAOAA8AAAAaAAgAAAAPAA8AAAAaAAcAAAAPAA4AAAAaAAYAAAAPAA0AAAD6/wYAAAANAA0AAAA=")
 tile_set = SubResource("TileSet_2sudb")
 
-[node name="Player" parent="." unique_id=1496604547 instance=ExtResource("2_jp4mu")]
+[node name="Player" parent="." unique_id=1496604547 groups=["player"] instance=ExtResource("2_jp4mu")]
 position = Vector2(-24, 80)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=601375439]
 
-[node name="BossBar" parent="CanvasLayer" unique_id=322971609 instance=ExtResource("3_p24eh")]
+[node name="BossBar" parent="CanvasLayer" unique_id=322971609 groups=["boss_ui"] instance=ExtResource("3_p24eh")]
 anchors_preset = 10
 anchor_bottom = 0.0
 grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="BronzeKight" parent="." unique_id=1556862518 instance=ExtResource("4_p4jox")]
-position = Vector2(241, 56)
-
-[node name="BossArena" parent="." unique_id=630935008 instance=ExtResource("5_7qpn0")]
+[node name="BossArena" parent="." unique_id=630935008 node_paths=PackedStringArray("boss_node") instance=ExtResource("5_7qpn0")]
 position = Vector2(112, 64)
+boss_node = NodePath("../SilverKnight")
 limit_left = 16
 limit_right = 325
 limit_top = -64
 limit_bottom = 96
+
+[node name="SilverKnight" parent="." unique_id=1068705441 instance=ExtResource("5_tcaap")]
+position = Vector2(272, 64)
+boss_color = Color(0.85289615, 0.88246167, 0.9208969, 1)
+
+[node name="LevelTransition" parent="." unique_id=849457353 instance=ExtResource("6_jp4mu")]
+position = Vector2(472, 72)
+next_scene_path = "uid://260iypgwvcqp"
+
+[connection signal="health_changed" from="SilverKnight" to="CanvasLayer/BossBar" method="update_health"]

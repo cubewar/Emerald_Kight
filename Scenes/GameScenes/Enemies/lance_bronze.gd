@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 # --- STATE LOGIC ---
 
 func state_patrol():
-	#anim_player.play("Patrol")
+	anim_player.play("Patrol")
 	sprite.frame = 0
 	
 	# 1. Check for walls and ledges FIRST
@@ -74,7 +74,7 @@ func state_patrol():
 			velocity.x = 0 # Stop walking immediately
 
 func state_windup(delta):
-	#anim_player.play("Windup")
+	anim_player.play("Windup")
 	sprite.frame = 1 # Show the Windup silhouette
 	velocity.x = 0 # Rooted to the spot
 	
@@ -84,7 +84,7 @@ func state_windup(delta):
 		state_timer = CHARGE_TIME
 
 func state_charge(delta):
-	sprite.frame = 2
+	anim_player.play("Charge")
 	
 	# Turn the spear damage ON!
 	spear_hitbox.set_deferred("disabled", false)

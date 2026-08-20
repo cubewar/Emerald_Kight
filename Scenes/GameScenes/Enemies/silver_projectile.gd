@@ -24,7 +24,6 @@ func take_damage(amount: int, hit_direction: float = 0.0):
 func _on_enemy_hurtbox_body_entered(body: Node2D) -> void:
 	if body is TileMap: 
 		queue_free()
-	print(body)
 	# 2. Did it hit the Player, and HASN'T been deflected yet? Hurt the player!
 	if body.name == "Player" and not is_deflected:
 		if body.has_method("take_damage"):

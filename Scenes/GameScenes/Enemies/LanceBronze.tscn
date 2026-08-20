@@ -3,19 +3,22 @@
 [ext_resource type="Script" uid="uid://dailgye2q47m0" path="res://Scenes/GameScenes/Enemies/lance_bronze.gd" id="1_i8vhk"]
 [ext_resource type="Texture2D" uid="uid://bifxxk68ajgrh" path="res://Assets/sprites/Enemies/BronzeLancer-Sheet.png" id="2_i8vhk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dpv56"]
-radius = 8.0
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqiwq"]
+size = Vector2(17.45, 25.67)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f6fh7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqiwq"]
 atlas = ExtResource("2_i8vhk")
-region = Rect2(0, 0, 64, 64)
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8vhk"]
 atlas = ExtResource("2_i8vhk")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dpv56"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6fh7"]
+atlas = ExtResource("2_i8vhk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hn2hd"]
 atlas = ExtResource("2_i8vhk")
 region = Rect2(128, 0, 64, 64)
 
@@ -23,21 +26,156 @@ region = Rect2(128, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f6fh7")
+"texture": SubResource("AtlasTexture_cqiwq")
+}],
+"loop": true,
+"name": &"Charge",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i8vhk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dpv56")
+"texture": SubResource("AtlasTexture_f6fh7")
 }],
 "loop": true,
 "name": &"Patrol",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hn2hd")
+}],
+"loop": true,
+"name": &"Windup",
+"speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_hn2hd"]
+resource_name = "Charge"
+length = 0.46666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"Charge"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wc8l3"]
+resource_name = "Patrol"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"Patrol"]
+}
+
+[sub_resource type="Animation" id="Animation_xmjja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"Patrol"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cqiwq"]
+resource_name = "Windup"
+length = 0.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"Windup"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7u23w"]
+_data = {
+&"Charge": SubResource("Animation_hn2hd"),
+&"Patrol": SubResource("Animation_wc8l3"),
+&"RESET": SubResource("Animation_xmjja"),
+&"Windup": SubResource("Animation_cqiwq")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8vhk"]
 size = Vector2(15, 13)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dpv56"]
+radius = 8.0
+height = 32.0
 
 [node name="BronzeLancer" type="CharacterBody2D" unique_id=1198491175]
 collision_layer = 4
@@ -45,7 +183,7 @@ collision_mask = 3
 script = ExtResource("1_i8vhk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=791052174]
-shape = SubResource("CapsuleShape2D_dpv56")
+shape = SubResource("RectangleShape2D_cqiwq")
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=110099217]
 position = Vector2(-30, 0)
@@ -64,9 +202,9 @@ collide_with_areas = true
 position = Vector2(2, -2)
 sprite_frames = SubResource("SpriteFrames_i8vhk")
 animation = &"Patrol"
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1660059408]
+libraries/ = SubResource("AnimationLibrary_7u23w")
 
 [node name="SpearHitbox" type="Area2D" parent="." unique_id=374685488]
 position = Vector2(17, 3)

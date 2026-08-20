@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://b6oqaau5kepxn" path="res://Scenes/GameScenes/Objects/sign_post.tscn" id="1_mkj7p"]
 [ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_ekhe3"]
 [ext_resource type="Script" uid="uid://dkm7nbdas6qva" path="res://Scripts/cutscene_director.gd" id="3_nxk3q"]
-[ext_resource type="Texture2D" uid="uid://b0jvaiudu021d" path="res://Assets/sprites/RubyKing.png" id="4_0f6l0"]
-[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/LevelScene/level_transition.tscn" id="5_jnc7v"]
+[ext_resource type="PackedScene" uid="uid://hmoo4eui1icy" path="res://Scenes/GameScenes/ruby_king.tscn" id="4_1l65h"]
+[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/GameScenes/Util/level_transition.tscn" id="5_jnc7v"]
 [ext_resource type="Texture2D" uid="uid://bi88hsbknbs6k" path="res://Assets/sprites/throneRoomGround.png" id="6_2j0ji"]
 
 [sub_resource type="Animation" id="Animation_3s5ty"]
@@ -18,9 +18,6 @@ _data = {
 &"boss_reveal": SubResource("Animation_3s5ty"),
 &"intro_fade_in": SubResource("Animation_p50xv")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tl4yn"]
-atlas = ExtResource("4_0f6l0")
 
 [node name="ThroneRoom" type="Node2D" unique_id=802296293]
 
@@ -44,9 +41,8 @@ player = NodePath("../Player")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CutsceneDirector" unique_id=1273115384]
 libraries/ = SubResource("AnimationLibrary_ourk5")
 
-[node name="RubyKing" type="Sprite2D" parent="." unique_id=1819247956]
+[node name="RubyKing" parent="." unique_id=1742568333 instance=ExtResource("4_1l65h")]
 position = Vector2(-114, -52)
-texture = SubResource("AtlasTexture_tl4yn")
 
 [node name="LevelTransition" parent="." unique_id=849457353 instance=ExtResource("5_jnc7v")]
 position = Vector2(401, 0)

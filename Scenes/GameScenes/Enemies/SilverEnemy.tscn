@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8xvf1jsqd2cm" path="res://Scenes/GameScenes/Enemies/silver_enemy.gd" id="1_fvs7v"]
 [ext_resource type="PackedScene" uid="uid://cknyd0lkcbwsu" path="res://Scenes/GameScenes/Enemies/SilverProjectile.tscn" id="2_0m7vj"]
-[ext_resource type="Texture2D" uid="uid://cketbkuxsjdca" path="res://Assets/sprites/Enemies/SilverMarksmen-Sheet.png" id="3_5ivx5"]
+[ext_resource type="Texture2D" uid="uid://cb4r50db8r2qu" path="res://Assets/sprites/Enemies/SilverMarksmen-SpriteSheet.png" id="4_s6hw2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ivx5"]
 size = Vector2(20, 26)
@@ -13,23 +13,39 @@ radius = 146.03082
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6hw2"]
 size = Vector2(20, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s6hw2"]
-atlas = ExtResource("3_5ivx5")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ivx5"]
+atlas = ExtResource("4_s6hw2")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8lx50"]
-atlas = ExtResource("3_5ivx5")
+atlas = ExtResource("4_s6hw2")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3ied"]
-atlas = ExtResource("3_5ivx5")
-region = Rect2(128, 0, 64, 64)
+atlas = ExtResource("4_s6hw2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuout"]
+atlas = ExtResource("4_s6hw2")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpcm0"]
+atlas = ExtResource("4_s6hw2")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8pul"]
+atlas = ExtResource("4_s6hw2")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmaxa"]
+atlas = ExtResource("4_s6hw2")
+region = Rect2(192, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tuout"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s6hw2")
+"texture": SubResource("AtlasTexture_5ivx5")
 }],
 "loop": true,
 "name": &"Detected",
@@ -38,6 +54,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8lx50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3ied")
 }],
 "loop": true,
 "name": &"Idle",
@@ -45,7 +64,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t3ied")
+"texture": SubResource("AtlasTexture_tuout")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpcm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8pul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmaxa")
 }],
 "loop": true,
 "name": &"Shoot",
@@ -78,9 +106,8 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_s6hw2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=397297531]
-scale = Vector2(0.78125, 0.75)
 sprite_frames = SubResource("SpriteFrames_tuout")
-animation = &"Idle"
+animation = &"Detected"
 
 [connection signal="body_entered" from="PlayerVision" to="." method="_on_player_vision_body_entered"]
 [connection signal="body_exited" from="PlayerVision" to="." method="_on_player_vision_body_exited"]

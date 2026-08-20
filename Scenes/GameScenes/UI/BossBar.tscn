@@ -25,6 +25,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oxy33")
 
+[node name="BossNameLabel" type="Label" parent="." unique_id=1324905574]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 6.0
+offset_right = 113.0
+offset_bottom = 29.0
+grow_horizontal = 2
+text = "Boss Name"
+label_settings = SubResource("LabelSettings_oxy33")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1233595993]
 layout_mode = 1
 anchors_preset = 5
@@ -45,19 +61,3 @@ texture_under = ExtResource("1_gjtit")
 texture_over = ExtResource("2_3gxpu")
 texture_progress = ExtResource("3_oxy33")
 tint_over = Color(0.46675056, 0.49272066, 0.541766, 1)
-
-[node name="Label" type="Label" parent="." unique_id=1324905574]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -112.0
-offset_top = 6.0
-offset_right = 113.0
-offset_bottom = 29.0
-grow_horizontal = 2
-text = "Bronze Kight"
-label_settings = SubResource("LabelSettings_oxy33")
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true

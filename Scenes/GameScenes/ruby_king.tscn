@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://hmoo4eui1icy"]
+
+[ext_resource type="Texture2D" uid="uid://cwkvbvmiyt3rx" path="res://Assets/sprites/RubyKing-Sheet-export.png" id="1_ji7qk"]
+[ext_resource type="Script" uid="uid://b0140i3nlqjv0" path="res://Scripts/ruby_king.gd" id="1_tdie5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0kkx"]
+atlas = ExtResource("1_ji7qk")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdie5"]
+atlas = ExtResource("1_ji7qk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j3wn"]
+atlas = ExtResource("1_ji7qk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb55e"]
+atlas = ExtResource("1_ji7qk")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pgnpg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0kkx")
+}],
+"loop": true,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdie5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j3wn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb55e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j3wn")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="RubyKing" type="CharacterBody2D" unique_id=1742568333]
+scale = Vector2(0.9945633, 1)
+script = ExtResource("1_tdie5")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1593025303]
+sprite_frames = SubResource("SpriteFrames_pgnpg")
+animation = &"Hurt"
+speed_scale = 0.1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1625661260]
+scale = Vector2(1.8260213, 1.6373132)
+build_mode = 1
+polygon = PackedVector2Array(0, -7.392, 0, 3.651, 8.81, 3.516, 8.810117, 14.658159, -15.45, 14.658, -15.245, -14.859, -13.215176, -14.658159, -13.215176, -9.772106, -4.4050584, -9.772106)

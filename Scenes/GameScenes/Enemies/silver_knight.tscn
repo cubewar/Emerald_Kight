@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cadc4dgdw68lf"]
+
+[ext_resource type="Script" uid="uid://bmd10wlj1eufx" path="res://Scripts/silver_knight.gd" id="1_kbgdy"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hklyo"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhgxd"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vlhs"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbgdy"]
+size = Vector2(208, 8)
+
+[node name="SilverKnight" type="CharacterBody2D" unique_id=1068705441]
+collision_layer = 4
+script = ExtResource("1_kbgdy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=878292832]
+modulate = Color(0.76306057, 0.76306057, 0.76306057, 1)
+position = Vector2(0, 8)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("PlaceholderTexture2D_hklyo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=379503542]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_uhgxd")
+
+[node name="EnemyHurtbox" type="Area2D" parent="." unique_id=269932581]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox" unique_id=595077668]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_1vlhs")
+
+[node name="HorizontalLaser" type="Area2D" parent="." unique_id=1002581513]
+position = Vector2(-88, 8)
+collision_layer = 4
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="HorizontalLaser" unique_id=132744938]
+offset_left = -136.0
+offset_right = 72.0
+offset_bottom = 8.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorizontalLaser" unique_id=1431856097]
+position = Vector2(-32, 4)
+shape = SubResource("RectangleShape2D_kbgdy")
+
+[connection signal="body_entered" from="HorizontalLaser" to="." method="_on_horizontal_laser_body_entered"]
