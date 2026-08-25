@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://boq2bnevbc7b" path="res://Assets/sprites/world_tileset.png" id="1_tcaap"]
 [ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_jp4mu"]
 [ext_resource type="PackedScene" uid="uid://b4fcfyhrjq5ed" path="res://Scenes/GameScenes/UI/BossBar.tscn" id="3_p24eh"]
-[ext_resource type="PackedScene" uid="uid://dqp4to54p721o" path="res://Scenes/GameScenes/Util/BossArena.tscn" id="5_7qpn0"]
+[ext_resource type="PackedScene" uid="uid://dqp4to54p721o" path="res://Scenes/Util/BossArena.tscn" id="5_7qpn0"]
 [ext_resource type="PackedScene" uid="uid://cadc4dgdw68lf" path="res://Scenes/GameScenes/Enemies/silver_knight.tscn" id="5_tcaap"]
-[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/GameScenes/Util/level_transition.tscn" id="6_jp4mu"]
+[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/Util/level_transition.tscn" id="6_jp4mu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xf575"]
 texture = ExtResource("1_tcaap")
@@ -197,7 +197,7 @@ limit_top = -64
 limit_bottom = 96
 
 [node name="SilverKnight" parent="." unique_id=1068705441 instance=ExtResource("5_tcaap")]
-position = Vector2(272, 64)
+position = Vector2(296, 64)
 boss_color = Color(0.85289615, 0.88246167, 0.9208969, 1)
 
 [node name="LevelTransition" parent="." unique_id=849457353 instance=ExtResource("6_jp4mu")]

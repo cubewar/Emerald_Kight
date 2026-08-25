@@ -53,6 +53,9 @@ func _process(delta):
 		shake_offset.y = randf_range(-shake_strength, shake_strength)
 		
 
-	# --- 3. COMBINE THEM ---
-	# We add them together so the camera looks ahead, but still shakes when you hit!
-	offset = base_offset + shake_offset
+	# --- 3. COMBINE THEM CORRECTLY ---
+	# We apply the look-ahead to 'position' so Godot's limits can successfully block it!
+	position = base_offset 
+	
+	# We apply the shake to 'offset' so it just vibrates the lens!
+	offset = shake_offset

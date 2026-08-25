@@ -33,7 +33,7 @@ position = Vector2(74, 134)
 position = Vector2(8, 184)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1385067397]
-polygon = PackedVector2Array(16, -40, 16, -50, 1, -50, 0, -60, -18, -61, -18, -74, -34, -75, -35, -89, -101, -90, -148, -90, -148, -169, -215, -171, -216, -220, -147, -238, -149, -371, -289, -204, -289, 42, 896, 44, 896, -40)
+polygon = PackedVector2Array(16, -40, 16, -50, 1, -50, 0, -60, -18, -61, -18, -74, -34, -75, -35, -89, -101, -90, -148, -90, -148, -169, -215, -171, -216, -220, -147, -238, -149, -371, -363, -210, -206, 80, 896, 80, 896, -40)
 
 [node name="CutsceneDirector" type="Node2D" parent="." unique_id=1785649084 node_paths=PackedStringArray("player")]
 script = ExtResource("3_nxk3q")
@@ -56,7 +56,6 @@ texture = ExtResource("6_2j0ji")
 
 [node name="CameraBounds" parent="." unique_id=41673895 instance=ExtResource("7_4hhuy")]
 collision_layer = 1
-collision_mask = 2
 
 [node name="CollisionShape2D" parent="CameraBounds" index="0" unique_id=814652828]
 position = Vector2(309, -38.760098)

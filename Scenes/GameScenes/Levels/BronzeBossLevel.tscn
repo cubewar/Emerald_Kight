@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_meqs8"]
 [ext_resource type="PackedScene" uid="uid://b4fcfyhrjq5ed" path="res://Scenes/GameScenes/UI/BossBar.tscn" id="3_vxo6r"]
 [ext_resource type="PackedScene" uid="uid://c1l5b3r60m818" path="res://Scenes/GameScenes/Enemies/BronzeKight.tscn" id="4_dfs7q"]
-[ext_resource type="PackedScene" uid="uid://dqp4to54p721o" path="res://Scenes/GameScenes/Util/BossArena.tscn" id="5_f8pvi"]
+[ext_resource type="PackedScene" uid="uid://dqp4to54p721o" path="res://Scenes/Util/BossArena.tscn" id="5_f8pvi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6772w"]
 texture = ExtResource("1_fmaok")

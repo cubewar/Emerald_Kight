@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cp6k5bnqr33xo"]
+
+[ext_resource type="Script" uid="uid://dcnkfx4b6lc4d" path="res://Scenes/Util/camera_bounds.gd" id="1_ax6jq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax6jq"]
+size = Vector2(1190.0002, 527.52026)
+
+[node name="CameraZone" type="Area2D" unique_id=1060003726]
+collision_layer = 7
+collision_mask = 0
+script = ExtResource("1_ax6jq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=814652828]
+shape = SubResource("RectangleShape2D_ax6jq")

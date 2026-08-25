@@ -11,7 +11,8 @@ var warning_text = [
 	{
 		"name": "Ruby King", 
 		"text": "Have you lost your mind, Emerald Knight?! Save your strength for the Trilateral King!", 
-		"pitch": 0.75 # Deep kingly voice
+		"pitch": 0.75, # Deep kingly voice
+		"portrait": preload("res://Assets/sprites/emerald_kinght_profile.png")
 	}
 ]
 

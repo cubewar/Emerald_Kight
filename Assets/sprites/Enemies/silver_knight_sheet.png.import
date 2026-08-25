@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi88hsbknbs6k"
-path="res://.godot/imported/throneRoomGround.png-27056f3ae458195e41b9a73c28c8beab.ctex"
+uid="uid://cidy6ajhfp23j"
+path="res://.godot/imported/silver_knight_sheet.png-f3be1526da86428e71f4cca2b420c299.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/throneRoomGround.png"
-dest_files=["res://.godot/imported/throneRoomGround.png-27056f3ae458195e41b9a73c28c8beab.ctex"]
+source_file="res://Assets/sprites/Enemies/silver_knight_sheet.png"
+dest_files=["res://.godot/imported/silver_knight_sheet.png-f3be1526da86428e71f4cca2b420c299.ctex"]
 
 [params]
 

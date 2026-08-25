@@ -8,22 +8,26 @@ var intro_text = [
 	{
 		"name": "Ruby King", 
 		"text": "Emerald Knight... the Crystal Kingdom is fracturing.", 
-		"pitch": 1.3 # Deep, regal King voice
+		"pitch": 1.3, # Deep, regal King voice
+		"portrait": preload("res://Assets/sprites/rubyKingProfile.png")
 	},
 	{
 		"name": "Ruby King", 
 		"text": "The Trilateral King has grown too bold. His reign of terror must end today.", 
-		"pitch": 1.3
+		"pitch": 1.3,
+		"portrait": preload("res://Assets/sprites/rubyKingProfile.png")
 	},
 	{
 		"name": "Emerald Knight", 
 		"text": "My hammer is yours, my King. Where do I find him?", 
-		"pitch": 0.5 # Grounded, standard hero voice
+		"pitch": 0.5, # Grounded, standard hero voice
+		"portrait": preload("res://Assets/sprites/emerald_kinght_profile.png")
 	},
 	{
 		"name": "Ruby King", 
 		"text": "Beyond the jagged peaks. Go. Do not return until the Trilateral King falls.", 
-		"pitch": 1.3
+		"pitch": 1.3,
+		"portrait": preload("res://Assets/sprites/rubyKingProfile.png")
 	}
 ]
 

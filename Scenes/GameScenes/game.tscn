@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://dgi8c4j45pxgs" path="res://Scripts/game_manager.gd" id="1_h4fw4"]
 [ext_resource type="Script" uid="uid://umiu160u1w73" path="res://Scenes/LevelScene/level.gd" id="1_q28si"]
 [ext_resource type="PackedScene" uid="uid://sdjke0sxcaxq" path="res://Scenes/GameScenes/platform.tscn" id="4_3dryh"]
-[ext_resource type="PackedScene" uid="uid://wjhvkcu02g84" path="res://Scenes/GameScenes/Util/kill_zone.tscn" id="4_i6g32"]
+[ext_resource type="PackedScene" uid="uid://wjhvkcu02g84" path="res://Scenes/Util/kill_zone.tscn" id="4_i6g32"]
 [ext_resource type="FontFile" uid="uid://bhakoyki5n2pc" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="5_ldgsr"]
 [ext_resource type="PackedScene" uid="uid://d2s2qfgou8irf" path="res://Scenes/GameScenes/coin.tscn" id="5_wowpa"]
 [ext_resource type="PackedScene" uid="uid://jkxpjd8iddfr" path="res://Scenes/GameScenes/Enemies/BronzeEnemy.tscn" id="7_v158k"]
 [ext_resource type="FontFile" uid="uid://2bnn13rbdl4v" path="res://Assets/fonts/PixelOperator8.ttf" id="8_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://53w83edodxrf" path="res://Scenes/GameScenes/UI/HUD.tscn" id="10_rr0fv"]
-[ext_resource type="PackedScene" uid="uid://bcejnbt84wrxv" path="res://Scenes/GameScenes/Util/LevelExitArea.tscn" id="11_q28si"]
+[ext_resource type="PackedScene" uid="uid://bcejnbt84wrxv" path="res://Scenes/Util/LevelExitArea.tscn" id="11_q28si"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rr0fv"]
 load_path = "res://.godot/imported/world_tileset.png-7d0351459d02dec97d7c98fe9a06c85b.ctex"

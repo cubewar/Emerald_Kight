@@ -1,10 +1,11 @@
 extends CanvasLayer
 
 const TEXTSOUND = preload("res://Scenes/Sounds/SFX/click.wav")
+const NEXTSOUND = preload("res://Scenes/Sounds/SFX/next.wav")
 
 @onready var text_label = $NinePatchRect/TextLabel
 @onready var name_label = $NinePatchRect/NameLabel
-
+@onready var profile = $NinePatchRect/TextureFrame/Profile
 signal dialogue_finished
 var dialogue_data: Array = []
 var current_index: int = 0
@@ -34,6 +35,14 @@ func show_next_message():
 	var current_message = dialogue_data[current_index]
 	name_label.text = current_message["name"]
 	
+	
+	if current_message.has("portrait"):
+		profile.texture = current_message["portrait"]
+		profile.show() 
+	else:
+		profile.texture = null
+		profile.hide()
+		
 	# Set full text
 	current_text_raw = current_message["text"]
 	text_label.text = current_text_raw
@@ -75,13 +84,14 @@ func _on_typing_finished():
 	is_typing = false
 
 func _input(event):
-	if event.is_action_pressed("jump") and $NinePatchRect.visible:
+	if event.is_action_pressed("ui_down") and $NinePatchRect.visible:
 		if is_typing:
-			# Skip instantly to the end
+			SoundManager.play_sfx(NEXTSOUND)
 			if current_tween:
 				current_tween.kill()
 			text_label.visible_characters = -1
 			is_typing = false
 		else:
 			current_index += 1
+			SoundManager.play_sfx(NEXTSOUND)
 			show_next_message()

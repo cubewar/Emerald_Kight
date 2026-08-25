@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://boq2bnevbc7b" path="res://Assets/sprites/world_tileset.png" id="1_j3wsq"]
 [ext_resource type="PackedScene" uid="uid://ctqbo1rrfbo1q" path="res://Scenes/GameScenes/player.tscn" id="2_h0r1b"]
 [ext_resource type="PackedScene" uid="uid://bproidm4vjlx2" path="res://Scenes/GameScenes/Enemies/LanceBronze.tscn" id="3_yxmjx"]
-[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/GameScenes/Util/level_transition.tscn" id="4_6oe51"]
+[ext_resource type="PackedScene" uid="uid://drvshth2brep0" path="res://Scenes/Util/level_transition.tscn" id="4_6oe51"]
 [ext_resource type="PackedScene" uid="uid://bwpjuqyrvwdlv" path="res://Scenes/GameScenes/Enemies/SilverEnemy.tscn" id="5_h0r1b"]
 [ext_resource type="PackedScene" uid="uid://v7dylvhitjbd" path="res://Scenes/GameScenes/Viliger1.tscn" id="6_ifrqp"]
 
